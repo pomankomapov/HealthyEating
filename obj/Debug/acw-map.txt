@@ -1,0 +1,1 @@
+healthy_eating.MainActivity;healthy_eating.MainActivity
