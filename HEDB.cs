@@ -27,9 +27,15 @@ namespace healthy_eating
 		/// <summary>
 		/// Добавляет новый "профиль пользователя" в базу.
 		/// </summary>
-		public Profile addProfile() {
+		public Profile addProfile(float _current_wight, float _desired_width, int _growth, int _age, bool _show_recommends) {
 			// Добавляем новый профиль
-			var _profile = new Profile { Message = "Test profile!!!" };
+			var _profile = new Profile { 
+				current_weight = _current_wight,
+				desired_weight = _desired_width,
+				growth = _growth,
+				age = _age,
+				show_recommends = _show_recommends
+			};
 			hedb.Insert (_profile);
 			return _profile;
 			// Show the automatically set ID and message.
@@ -90,11 +96,11 @@ namespace healthy_eating
 	{
 		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
-		public int current_weight { get; set; }
-		public int desired_weight { get; set; }
+		public float current_weight { get; set; }
+		public float desired_weight { get; set; }
 		public int growth { get; set; }
 		public int age { get; set; }
-		public int show_recommends { get; set; }
+		public bool show_recommends { get; set; }
 		public string Message { get; set; }
 	}
 
