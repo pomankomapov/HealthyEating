@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffffffff">
     <TextView
-        android:text="Вас приветствует программа здорового питания!!!!"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
-</LinearLayout>
+        p1:text="Имя:"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView1"
+        p1:textColor="#ff000000"
+        p1:layout_below="@id/textView1" />
+    <EditText
+        p1:inputType="textPersonName"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView1"
+        p1:id="@+id/edit_name"
+        p1:textColor="#ff000000"
+        p1:hint="Введите ваше имя" />
+    <TextView
+        p1:text="Пол:"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/edit_name"
+        p1:id="@+id/textView2"
+        p1:textColor="#ff000000" />
+    <RadioGroup
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView2"
+        p1:id="@+id/radioGroup1"
+        p1:orientation="horizontal">
+        <RadioButton
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:text="Мужской"
+            p1:id="@+id/radio_man"
+            p1:textColor="#ff000000" />
+        <RadioButton
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:text="Женский"
+            p1:id="@+id/radio_woman"
+            p1:textColor="#ff000000" />
+    </RadioGroup>
+    <TextView
+        p1:text="Рост:"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/radioGroup1"
+        p1:id="@+id/textView3"
+        p1:textColor="#ff000000" />
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView3"
+        p1:id="@+id/linearLayout1">
+        <EditText
+            p1:inputType="numberDecimal"
+            p1:layout_width="61.9dp"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/edit_length"
+            p1:textColor="#ff000000"
+            p1:text="170" />
+        <SeekBar
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/seekbar_length"
+            p1:max="250"
+            p1:layout_marginRight="10dp"
+            p1:progress="170"
+            p1:scrollbars="vertical" />
+    </LinearLayout>
+</RelativeLayout>

@@ -12,8 +12,9 @@
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/linearLayout2">
+        p1:layout_height="42.1dp"
+        p1:id="@+id/stat_header"
+        p1:tag="Заголовок и кнопки">
         <LinearLayout
             p1:orientation="horizontal"
             p1:minWidth="25px"
@@ -21,17 +22,7 @@
             p1:layout_width="wrap_content"
             p1:layout_height="match_parent"
             p1:id="@+id/linearLayout5"
-            p1:layout_gravity="left">
-            <TextView
-                p1:text="Large Text"
-                p1:textAppearance="?android:attr/textAppearanceLarge"
-                p1:layout_width="181.2dp"
-                p1:layout_height="30.2dp"
-                p1:id="@+id/textView1"
-                p1:textColor="#ff000000"
-                p1:gravity="center_vertical"
-                p1:layout_marginRight="0.0dp" />
-        </LinearLayout>
+            p1:layout_gravity="left" />
         <LinearLayout
             p1:orientation="horizontal"
             p1:minWidth="25px"
@@ -44,14 +35,14 @@
             p1:layout_weight="2">
             <Button
                 p1:layout_width="wrap_content"
-                p1:layout_height="35dp"
-                p1:id="@+id/button1"
-                p1:text="Profile" />
+                p1:layout_height="37dp"
+                p1:id="@+id/button_profile"
+                p1:text="Профиль" />
             <Button
                 p1:layout_width="wrap_content"
-                p1:layout_height="35dp"
-                p1:id="@+id/button2"
-                p1:text="Options" />
+                p1:layout_height="37dp"
+                p1:id="@+id/button_options"
+                p1:text="Настройки" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -60,12 +51,121 @@
         p1:minHeight="25px"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/linearLayout3" />
+        p1:id="@+id/stat_weight"
+        p1:tag="Вес">
+        <TextView
+            p1:text="Вес:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView3"
+            p1:textColor="#ff000000" />
+        <TextView
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/text_stat_weight"
+            p1:textColor="#ff000000"
+            p1:layout_gravity="right"
+            p1:layout_weight="1"
+            p1:gravity="right"
+            p1:layout_marginRight="10dp" />
+    </LinearLayout>
     <LinearLayout
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/linearLayout4" />
+        p1:id="@+id/stat_calories"
+        p1:tag="Калории"
+        p1:layout_marginRight="0.0dp">
+        <TextView
+            p1:text="Калории:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView4"
+            p1:textColor="#ff000000" />
+        <TextView
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/text_stat_calories"
+            p1:textColor="#ff000000"
+            p1:gravity="right"
+            p1:layout_marginRight="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/stat_pfc"
+        p1:tag="БЖУ">
+        <TextView
+            p1:text="БЖУ:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView5"
+            p1:textColor="#ff000000" />
+        <TextView
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/text_stat_pfc"
+            p1:textColor="#ff000000"
+            p1:gravity="right"
+            p1:layout_marginRight="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/stat_water"
+        p1:tag="Вода">
+        <TextView
+            p1:text="Вода:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView6"
+            p1:textColor="#ff000000" />
+        <TextView
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/text_stat_water"
+            p1:textColor="#ff000000"
+            p1:layout_marginRight="10dp"
+            p1:gravity="right" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/stat_training"
+        p1:tag="Упражнения">
+        <TextView
+            p1:text="Упражнения:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView7"
+            p1:textColor="#ff000000" />
+        <TextView
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/text_stat_training"
+            p1:textColor="#ff000000"
+            p1:layout_marginRight="10dp"
+            p1:gravity="right" />
+    </LinearLayout>
 </LinearLayout>
