@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,12 +45,16 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProfileActivity.cs" />
     <Compile Include="OptionsActivity.cs" />
     <Compile Include="DataBaseActivity.cs" />
+    <Compile Include="HEDB.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="HEDBFunctions.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -71,6 +75,7 @@
     <AndroidResource Include="Resources\drawable\profile27.png" />
     <AndroidResource Include="Resources\drawable\update8.png" />
     <AndroidResource Include="Resources\drawable\user62.png" />
+    <AndroidResource Include="Resources\layout\db.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>

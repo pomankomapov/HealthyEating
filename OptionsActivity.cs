@@ -16,14 +16,25 @@ namespace healthy_eating
 	[Activity (Label = "Настройки")]			
 	public class OptionsActivity : Activity
 	{
+        protected Button btn_db_options;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			// Create your application here
+            // Ставим нужный layout ///////////////////////////////////////////////
 
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.options);
+
+            // Получаем все контролы //////////////////////////////////////////////
+
+            btn_db_options = FindViewById<Button>(Resource.Id.button_db_options);
+
+            // Назначаем действия /////////////////////////////////////////////////
+
+            btn_db_options.Click += (sender, e) =>{
+                StartActivity(typeof(DataBaseActivity));
+            };
 		}
 	}
 }

@@ -66,10 +66,11 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:layout_below="@id/textView3"
-        p1:id="@+id/linearLayout1">
+        p1:id="@+id/linearLayout1"
+        p1:gravity="center_vertical">
         <EditText
             p1:inputType="numberDecimal"
-            p1:layout_width="61.9dp"
+            p1:layout_width="60dp"
             p1:layout_height="wrap_content"
             p1:id="@+id/edit_length"
             p1:textColor="#ff000000"
@@ -82,5 +83,134 @@
             p1:layout_marginRight="10dp"
             p1:progress="170"
             p1:scrollbars="vertical" />
+    </LinearLayout>
+    <TextView
+        p1:text="Вес:"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/linearLayout1"
+        p1:id="@+id/textView4"
+        p1:textColor="#ff000000" />
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView4"
+        p1:id="@+id/linearLayout2"
+        p1:gravity="center_vertical">
+        <EditText
+            p1:inputType="numberDecimal"
+            p1:layout_width="60dp"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/edit_weight"
+            p1:textColor="#ff000000"
+            p1:text="60" />
+        <SeekBar
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/seekbar_weight"
+            p1:progress="60"
+            p1:max="120"
+            p1:layout_marginRight="10dp" />
+    </LinearLayout>
+    <TextView
+        p1:text="Целевой вес:"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/linearLayout2"
+        p1:id="@+id/textView5"
+        p1:textColor="#ff000000" />
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView5"
+        p1:id="@+id/linearLayout3"
+        p1:gravity="center_vertical">
+        <EditText
+            p1:inputType="numberDecimal"
+            p1:layout_width="60dp"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/edit_target_weight"
+            p1:textColor="#ff000000"
+            p1:text="55" />
+        <SeekBar
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/seekbar_target_weight"
+            p1:layout_marginRight="10dp"
+            p1:max="120"
+            p1:progress="55" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/linearLayout3"
+        p1:id="@+id/linearLayout4"
+        p1:gravity="center_vertical">
+        <TextView
+            p1:text="Образ жизни:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:id="@+id/textView6"
+            p1:textColor="#ff000000"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content" />
+        <Spinner
+            p1:layout_width="match_parent"
+            p1:layout_height="37dp"
+            p1:id="@+id/spinner_lifestyle"
+            p1:layout_marginRight="10dp"
+            p1:layout_gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/linearLayout4"
+        p1:id="@+id/linearLayout5"
+        p1:gravity="center_vertical">
+        <TextView
+            p1:text="Аллергенные:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textView7"
+            p1:textColor="#ff000000" />
+        <Spinner
+            p1:layout_width="match_parent"
+            p1:layout_height="37dp"
+            p1:id="@+id/spinner_allergic"
+            p1:layout_marginRight="10dp"
+            p1:layout_gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/linearLayout5"
+        p1:id="@+id/linearLayout6">
+        <Button
+            p1:text="Принять"
+            p1:layout_width="wrap_content"
+            p1:layout_height="37dp"
+            p1:id="@+id/button_apply" />
+        <Button
+            p1:text="Отмена"
+            p1:layout_width="wrap_content"
+            p1:layout_height="37dp"
+            p1:id="@+id/button_cancel" />
     </LinearLayout>
 </RelativeLayout>
