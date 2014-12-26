@@ -53,6 +53,12 @@ namespace healthy_eating
 			// Задачи во время запуска активности /////////////////////////////////
 
 			fill_data ();
+            HEDB database = new HEDB();
+
+            database.delAllFood();
+            database.addFood(0, "Яблоко", 45, 0, 70, 100, 3);
+            database.addFood(1, "Абрикос", 45, 0, 70, 100, 3);
+            database.addFood(2, "Молоко", 45, 0, 70, 100, 3);
 		}
 
 		static string value_to_str(int value)

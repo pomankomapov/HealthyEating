@@ -32,10 +32,11 @@ namespace healthy_eating
 
             // Назначаем действия /////////////////////////////////////////////////
 
-            string[] items;
-            database.getAllFood();
+            //database.getAllFood();
 
-
+            //lsv_food.Adapter = StartActivity(typeof(ListFood));
+            StartActivity(typeof(ListFood));
+            //lsv_food.Adapter = ListFood;
 
             //var fd = 0;
 		}
