@@ -9,9 +9,10 @@ using Android.OS;
 
 namespace healthy_eating
 {
-	[Activity (Label = "Healthy Eating", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity (Label = "Healthy Eating", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
+        static HEDB database = new HEDB();
 		protected Button    btn_profile;       // Кнопка профиля
 		protected Button    btn_options;       // Кнопка настроек
 		protected TextView  txt_stat_weight;   // Вес
@@ -82,6 +83,12 @@ namespace healthy_eating
 			txt_stat_water.Text = value_to_str(water) + " л";
 			txt_stat_training.Text = value_to_str(-training) + " Ккал"; // Сжигание
 		}
+
+        protected string get_phone_id()
+        {
+            // TODO: найти способ получить уникальный номер устройства
+            return "";
+        }
 	}
 }
 

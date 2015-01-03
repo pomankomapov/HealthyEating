@@ -2,4 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="healthy_eating.healthy_eating">
 	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="10" />
 	<application android:label="healthy_eating"></application>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 </manifest>

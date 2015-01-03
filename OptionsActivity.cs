@@ -16,6 +16,7 @@ namespace healthy_eating
 	[Activity (Label = "Настройки")]			
 	public class OptionsActivity : Activity
 	{
+        static HEDB database = new HEDB();
         protected Button btn_db_options;
 
 		protected override void OnCreate (Bundle bundle)

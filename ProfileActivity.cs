@@ -15,6 +15,7 @@ namespace healthy_eating
 	[Activity (Label = "Профиль")]
 	public class ProfileActivity : Activity
 	{
+        static HEDB database = new HEDB();
 		protected EditText     edt_name;          // Имя
 		protected RadioButton  rad_man;           // Пол мужской
 		protected RadioButton  rad_woman;         // Пол женский
@@ -32,6 +33,9 @@ namespace healthy_eating
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+            // Убираем автофокус
+            this.Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
 
 			// Ставим нужный layout ///////////////////////////////////////////////
 
@@ -134,7 +138,8 @@ namespace healthy_eating
 
             // Кнопки применения и отмены
             btn_apply.Click += (sender, e) => {
-                save_data();
+                if (save_data())
+                    base.OnBackPressed();
             };
 
             btn_cancel.Click += (sender, e) => {
@@ -146,11 +151,50 @@ namespace healthy_eating
 
         protected void load_data()
         {
-
+            //database.getProfile();
         }
 
-        protected void save_data()
+        protected bool save_data()
         {
+            Profile profile = new Profile();
+
+            string name = edt_name.Text;
+            if (string.IsNullOrEmpty(name))
+            {
+                Android.Widget.Toast.MakeText(this, "Введите имя", Android.Widget.ToastLength.Short).Show();
+                return false;
+            }
+
+            bool man = false;
+            if (rad_man.Checked)
+            {
+                man = true;
+            }
+            else if (rad_woman.Checked)
+            {
+                man = false;
+            }
+            else
+            {
+                Android.Widget.Toast.MakeText(this, "Выберите пол", Android.Widget.ToastLength.Short).Show();
+                return false;
+            }
+
+            int growth = 0;
+            int.TryParse(edt_length.Text, out growth);
+
+            float current_weight, desired_weight;
+            current_weight = desired_weight = 0;
+
+            float.TryParse(edt_weight.Text, out current_weight);
+            float.TryParse(edt_target_weight.Text, out desired_weight);
+
+            // Заполнение данных /////////////////////////////////////////////////////////////////////////
+
+            int id = database.addProfile(name, current_weight, desired_weight, growth, 0, man, false).ID;
+            Android.Widget.Toast.MakeText(this, string.Format("{0}", id), Android.Widget.ToastLength.Short).Show();
+
+            return true;
         }
 	}
 }

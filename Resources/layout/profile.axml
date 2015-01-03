@@ -1,216 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
     p1:minHeight="25px"
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
-    p1:id="@+id/relativeLayout1"
+    p1:id="@+id/scrollView1"
     p1:background="#ffffffff">
-    <TextView
-        p1:text="Имя:"
-        p1:textAppearance="?android:attr/textAppearanceMedium"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/textView1"
-        p1:textColor="#ff000000"
-        p1:layout_below="@id/textView1" />
-    <EditText
-        p1:inputType="textPersonName"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textView1"
-        p1:id="@+id/edit_name"
-        p1:textColor="#ff000000"
-        p1:hint="Введите ваше имя" />
-    <TextView
-        p1:text="Пол:"
-        p1:textAppearance="?android:attr/textAppearanceMedium"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/edit_name"
-        p1:id="@+id/textView2"
-        p1:textColor="#ff000000" />
-    <RadioGroup
+    <RelativeLayout
         p1:minWidth="25px"
         p1:minHeight="25px"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textView2"
-        p1:id="@+id/radioGroup1"
-        p1:orientation="horizontal">
-        <RadioButton
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:text="Мужской"
-            p1:id="@+id/radio_man"
-            p1:textColor="#ff000000" />
-        <RadioButton
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:text="Женский"
-            p1:id="@+id/radio_woman"
-            p1:textColor="#ff000000" />
-    </RadioGroup>
-    <TextView
-        p1:text="Рост:"
-        p1:textAppearance="?android:attr/textAppearanceMedium"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/radioGroup1"
-        p1:id="@+id/textView3"
-        p1:textColor="#ff000000" />
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
+        p1:id="@+id/relativeLayout1"
+        p1:background="#ffffffff"
         p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textView3"
-        p1:id="@+id/linearLayout1"
-        p1:gravity="center_vertical">
-        <EditText
-            p1:inputType="numberDecimal"
-            p1:layout_width="60dp"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/edit_length"
-            p1:textColor="#ff000000"
-            p1:text="170" />
-        <SeekBar
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/seekbar_length"
-            p1:max="250"
-            p1:layout_marginRight="10dp"
-            p1:progress="170"
-            p1:scrollbars="vertical" />
-    </LinearLayout>
-    <TextView
-        p1:text="Вес:"
-        p1:textAppearance="?android:attr/textAppearanceMedium"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/linearLayout1"
-        p1:id="@+id/textView4"
-        p1:textColor="#ff000000" />
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textView4"
-        p1:id="@+id/linearLayout2"
-        p1:gravity="center_vertical">
-        <EditText
-            p1:inputType="numberDecimal"
-            p1:layout_width="60dp"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/edit_weight"
-            p1:textColor="#ff000000"
-            p1:text="60" />
-        <SeekBar
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/seekbar_weight"
-            p1:progress="60"
-            p1:max="120"
-            p1:layout_marginRight="10dp" />
-    </LinearLayout>
-    <TextView
-        p1:text="Целевой вес:"
-        p1:textAppearance="?android:attr/textAppearanceMedium"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/linearLayout2"
-        p1:id="@+id/textView5"
-        p1:textColor="#ff000000" />
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textView5"
-        p1:id="@+id/linearLayout3"
-        p1:gravity="center_vertical">
-        <EditText
-            p1:inputType="numberDecimal"
-            p1:layout_width="60dp"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/edit_target_weight"
-            p1:textColor="#ff000000"
-            p1:text="55" />
-        <SeekBar
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/seekbar_target_weight"
-            p1:layout_marginRight="10dp"
-            p1:max="120"
-            p1:progress="55" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/linearLayout3"
-        p1:id="@+id/linearLayout4"
-        p1:gravity="center_vertical">
+        p1:layout_height="match_parent">
         <TextView
-            p1:text="Образ жизни:"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:id="@+id/textView6"
-            p1:textColor="#ff000000"
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content" />
-        <Spinner
-            p1:layout_width="match_parent"
-            p1:layout_height="37dp"
-            p1:id="@+id/spinner_lifestyle"
-            p1:layout_marginRight="10dp"
-            p1:layout_gravity="center_vertical" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/linearLayout4"
-        p1:id="@+id/linearLayout5"
-        p1:gravity="center_vertical">
-        <TextView
-            p1:text="Аллергенные:"
+            p1:text="Имя:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="wrap_content"
             p1:layout_height="wrap_content"
-            p1:id="@+id/textView7"
+            p1:id="@+id/textView1"
+            p1:textColor="#ff000000"
+            p1:layout_below="@id/textView1" />
+        <EditText
+            p1:inputType="textPersonName"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView1"
+            p1:id="@+id/edit_name"
+            p1:textColor="#ff000000"
+            p1:hint="Введите ваше имя" />
+        <TextView
+            p1:text="Пол:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/edit_name"
+            p1:id="@+id/textView2"
             p1:textColor="#ff000000" />
-        <Spinner
+        <RadioGroup
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView2"
+            p1:id="@+id/radioGroup1"
+            p1:orientation="horizontal">
+            <RadioButton
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:text="Мужской"
+                p1:id="@+id/radio_man"
+                p1:textColor="#ff000000" />
+            <RadioButton
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:text="Женский"
+                p1:id="@+id/radio_woman"
+                p1:textColor="#ff000000" />
+        </RadioGroup>
+        <TextView
+            p1:text="Рост:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@+id/linearLayout5"
+            p1:id="@+id/textView3"
+            p1:textColor="#ff000000" />
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
             p1:layout_width="match_parent"
-            p1:layout_height="37dp"
-            p1:id="@+id/spinner_allergic"
-            p1:layout_marginRight="10dp"
-            p1:layout_gravity="center_vertical" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/linearLayout5"
-        p1:id="@+id/linearLayout6">
-        <Button
-            p1:text="Принять"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView3"
+            p1:id="@+id/linearLayout1"
+            p1:gravity="center_vertical">
+            <EditText
+                p1:inputType="numberDecimal"
+                p1:layout_width="60dp"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/edit_length"
+                p1:textColor="#ff000000"
+                p1:text="170" />
+            <SeekBar
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/seekbar_length"
+                p1:max="250"
+                p1:layout_marginRight="10dp"
+                p1:progress="170"
+                p1:scrollbars="vertical" />
+        </LinearLayout>
+        <TextView
+            p1:text="Вес:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="wrap_content"
-            p1:layout_height="37dp"
-            p1:id="@+id/button_apply" />
-        <Button
-            p1:text="Отмена"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/linearLayout1"
+            p1:id="@+id/textView4"
+            p1:textColor="#ff000000" />
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView4"
+            p1:id="@+id/linearLayout2"
+            p1:gravity="center_vertical">
+            <EditText
+                p1:inputType="numberDecimal"
+                p1:layout_width="60dp"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/edit_weight"
+                p1:textColor="#ff000000"
+                p1:text="60" />
+            <SeekBar
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/seekbar_weight"
+                p1:progress="60"
+                p1:max="120"
+                p1:layout_marginRight="10dp" />
+        </LinearLayout>
+        <TextView
+            p1:text="Целевой вес:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="wrap_content"
-            p1:layout_height="37dp"
-            p1:id="@+id/button_cancel" />
-    </LinearLayout>
-</RelativeLayout>
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/linearLayout2"
+            p1:id="@+id/textView5"
+            p1:textColor="#ff000000" />
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView5"
+            p1:id="@+id/linearLayout3"
+            p1:gravity="center_vertical">
+            <EditText
+                p1:inputType="numberDecimal"
+                p1:layout_width="60dp"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/edit_target_weight"
+                p1:textColor="#ff000000"
+                p1:text="55" />
+            <SeekBar
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/seekbar_target_weight"
+                p1:layout_marginRight="10dp"
+                p1:max="120"
+                p1:progress="55" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@+id/radioGroup1"
+            p1:id="@+id/linearLayout4"
+            p1:gravity="center_vertical">
+            <TextView
+                p1:text="Образ жизни:"
+                p1:textAppearance="?android:attr/textAppearanceMedium"
+                p1:id="@+id/textView6"
+                p1:textColor="#ff000000"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content" />
+            <Spinner
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/spinner_lifestyle"
+                p1:layout_marginRight="10dp"
+                p1:layout_gravity="center_vertical" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/linearLayout4"
+            p1:id="@+id/linearLayout5"
+            p1:gravity="center_vertical">
+            <TextView
+                p1:text="Аллергенные:"
+                p1:textAppearance="?android:attr/textAppearanceMedium"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView7"
+                p1:textColor="#ff000000" />
+            <Spinner
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/spinner_allergic"
+                p1:layout_marginRight="10dp"
+                p1:layout_gravity="center_vertical" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@+id/linearLayout3"
+            p1:id="@+id/linearLayout6">
+            <Button
+                p1:text="Принять"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/button_apply" />
+            <Button
+                p1:text="Отмена"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/button_cancel" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

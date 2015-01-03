@@ -16,7 +16,6 @@ namespace healthy_eating
 	public class DataBaseActivity : Activity
 	{
         static HEDB database = new HEDB();
-        protected ListView lsv_food;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -28,17 +27,12 @@ namespace healthy_eating
 
             // Получаем все контролы //////////////////////////////////////////////
 
-            lsv_food = FindViewById <ListView> (Resource.Id.listView_food);
 
             // Назначаем действия /////////////////////////////////////////////////
 
             //database.getAllFood();
 
-            //lsv_food.Adapter = StartActivity(typeof(ListFood));
             StartActivity(typeof(ListFood));
-            //lsv_food.Adapter = ListFood;
-
-            //var fd = 0;
 		}
 	}
 }
