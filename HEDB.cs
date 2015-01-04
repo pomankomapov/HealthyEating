@@ -30,19 +30,30 @@ namespace healthy_eating
 
 		}
 
+        public void delAll()
+        {
+            hedb.DeleteAll<Profile>();
+            hedb.DeleteAll<Profession>();
+            hedb.DeleteAll<Lifestyle>();
+            hedb.DeleteAll<Food>();
+            hedb.DeleteAll<FoodPortion>();
+            hedb.DeleteAll<Eating>();
+        }
+
         // Методы для сущности "Профиль" ///////////////////////////////////////////////////////////////////////
 
 		/// <summary>
 		/// Добавляет новый "профиль пользователя" в базу.
 		/// </summary>
-        public Profile addProfile(string _name, float _current_wight, float _desired_width, 
+        public Profile addProfile(string _deviceID, string _name, float _current_weight, float _desired_weight, 
                                   int _growth, int _age, bool _man, bool _show_recommends)
         {
 			// Добавляем новый профиль
 			var _profile = new Profile {
+                deviceID = _deviceID,
                 name = _name,
-				current_weight = _current_wight,
-				desired_weight = _desired_width,
+                current_weight = _current_weight,
+                desired_weight = _desired_weight,
 				growth = _growth,
 				age = _age,
                 man = _man,
@@ -54,8 +65,32 @@ namespace healthy_eating
 
         public Profile getProfile(int ID)
         {
-            var query = hedb.Table<Profile>().Where(x => x.ID == ID);
-            var result = query.ElementAt(0);
+            Profile result;
+            try
+            {
+                var query = hedb.Table<Profile>().Where(x => x.ID == ID);
+                result = query.ElementAt(0);
+            }
+            catch
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
+        public Profile getProfileByDevice(string deviceID)
+        {
+            Profile result;
+            try
+            {
+                var query = hedb.Table<Profile>().Where(x => x.deviceID == deviceID);
+                result = query.First();
+            }
+            catch
+            {
+                result = null;
+            }
 
             return result;
         }
@@ -148,16 +183,16 @@ namespace healthy_eating
         // Методы для сущности "Продукты" /////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Adds the food.
+        /// Добавляет продукт в базу
         /// </summary>
-        /// <returns>The food.</returns>
-        /// <param name="_ID">I.</param>
-        /// <param name="_name">Name.</param>
-        /// <param name="_proteins">Proteins.</param>
-        /// <param name="_fats">Fats.</param>
-        /// <param name="_carbs">Carbs.</param>
-        /// <param name="_calories">Calories.</param>
-        /// <param name="_ProfileID">Profile I.</param>
+        /// <returns>Продукт</returns>
+        /// <param name="_ID">Номер</param>
+        /// <param name="_name">Имя</param>
+        /// <param name="_proteins">Белки</param>
+        /// <param name="_fats">Жиры</param>
+        /// <param name="_carbs">Угдеводы</param>
+        /// <param name="_calories">Калории</param>
+        /// <param name="_ProfileID">Номер профиля добавившего продукт</param>
         public Food addFood(int _ID, string _name, int _proteins, int _fats, int _carbs, int _calories, int _ProfileID)
         {
             // Добавляем новый профиль
@@ -212,6 +247,7 @@ namespace healthy_eating
 	{
 		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
+        public string deviceID { get; set; }
         public string name { get; set; }
 		public float current_weight { get; set; }
 		public float desired_weight { get; set; }
@@ -284,7 +320,7 @@ namespace healthy_eating
     public class EatingTemplate
     {
         [PrimaryKey]
-        public int FoodPortionID { get; set; } // ТУТ ДОЛЖЕН БЫТЬ СПИСОК!
+        public List<int> FoodPortionID { get; set; } // TODO: проверь работает ли
     }
 
     // Ещё таблички "План питания" и "День питаний"
