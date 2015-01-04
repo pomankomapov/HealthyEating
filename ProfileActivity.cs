@@ -149,14 +149,42 @@ namespace healthy_eating
 			// Задачи во время запуска активности /////////////////////////////////
 		}
 
+        protected override void OnResume()
+        {
+            // Always call the superclass first
+            base.OnResume();
+
+            load_data();
+        }
+
         protected void load_data()
         {
-            //database.getProfile();
+            int profileID = Global.userID;
+
+            // Если профиль был найден
+            if (profileID != int.MaxValue)
+            {
+                Profile profile = database.getProfile(profileID);
+
+                edt_name.Text = profile.name;
+                rad_man.Checked = profile.man;
+                rad_woman.Checked = !profile.man;
+                edt_length.Text = string.Format("{0}", profile.growth);
+                edt_weight.Text = string.Format("{0}", profile.current_weight);
+                edt_target_weight.Text = string.Format("{0}", profile.desired_weight);
+            }
         }
 
         protected bool save_data()
         {
-            Profile profile = new Profile();
+            Profile profile;
+            if (Global.userID == int.MaxValue) profile = new Profile();
+            else
+            {
+                profile = database.getProfile(Global.userID);
+            }
+
+            // Имя /////////////////////////////////////////////////////////////////////////////////////////
 
             string name = edt_name.Text;
             if (string.IsNullOrEmpty(name))
@@ -164,6 +192,8 @@ namespace healthy_eating
                 Android.Widget.Toast.MakeText(this, "Введите имя", Android.Widget.ToastLength.Short).Show();
                 return false;
             }
+
+            // Пол /////////////////////////////////////////////////////////////////////////////////////////
 
             bool man = false;
             if (rad_man.Checked)
@@ -180,8 +210,12 @@ namespace healthy_eating
                 return false;
             }
 
+            // Рост ////////////////////////////////////////////////////////////////////////////////////////
+
             int growth = 0;
             int.TryParse(edt_length.Text, out growth);
+
+            // Вес /////////////////////////////////////////////////////////////////////////////////////////
 
             float current_weight, desired_weight;
             current_weight = desired_weight = 0;
@@ -189,10 +223,15 @@ namespace healthy_eating
             float.TryParse(edt_weight.Text, out current_weight);
             float.TryParse(edt_target_weight.Text, out desired_weight);
 
-            // Заполнение данных /////////////////////////////////////////////////////////////////////////
+            // Сохранение данных ///////////////////////////////////////////////////////////////////////////
 
-            int id = database.addProfile(name, current_weight, desired_weight, growth, 0, man, false).ID;
-            Android.Widget.Toast.MakeText(this, string.Format("{0}", id), Android.Widget.ToastLength.Short).Show();
+            Android.Widget.Toast.MakeText(this, Global.deviceID, Android.Widget.ToastLength.Short).Show();
+
+            // Запись существует
+            if (Global.userID != int.MaxValue) database.delProfile(Global.userID);
+
+            Global.userID = database.addProfile(Global.deviceID, name, current_weight, 
+                                                desired_weight, growth, 0, man, false).ID;
 
             return true;
         }
