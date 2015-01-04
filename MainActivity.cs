@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Telephony;
+using Java.Util;
 
 namespace healthy_eating
 {
@@ -13,6 +15,7 @@ namespace healthy_eating
 	public class MainActivity : Activity
 	{
         static HEDB database = new HEDB();
+        static int profileID = int.MaxValue;   // ID профиля пользователя
 		protected Button    btn_profile;       // Кнопка профиля
 		protected Button    btn_options;       // Кнопка настроек
 		protected TextView  txt_stat_weight;   // Вес
@@ -53,9 +56,16 @@ namespace healthy_eating
 
 			// Задачи во время запуска активности /////////////////////////////////
 
+            Global.deviceID = "noneID";
+            Global.userID = int.MaxValue;
+
+            profileID = find_main_profile();
+            if (profileID == int.MaxValue) // Профиля нет
+                StartActivity(typeof(ProfileActivity));
 			fill_data ();
             HEDB database = new HEDB();
 
+            database.delAll(); // Временно
             database.delAllFood();
             database.addFood(0, "Яблоко", 45, 0, 70, 100, 3);
             database.addFood(1, "Абрикос", 45, 0, 70, 100, 3);
@@ -86,8 +96,57 @@ namespace healthy_eating
 
         protected string get_phone_id()
         {
-            // TODO: найти способ получить уникальный номер устройства
-            return "";
+            // Получаем уникальный номер устройства
+            string deviceID;
+            var telephonyDeviceID = string.Empty;
+            var telephonySIMSerialNumber = string.Empty;
+
+            try
+            {
+                TelephonyManager telephonyManager = (TelephonyManager)this.ApplicationContext.GetSystemService(Context.TelephonyService);
+                if (telephonyManager != null)
+                {
+                    if(!string.IsNullOrEmpty(telephonyManager.DeviceId))
+                        telephonyDeviceID = telephonyManager.DeviceId;
+                    if(!string.IsNullOrEmpty(telephonyManager.SimSerialNumber))
+                        telephonySIMSerialNumber = telephonyManager.SimSerialNumber;
+                }
+                var androidID = Android.Provider.Settings.Secure.GetString(this.ApplicationContext.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
+                var deviceUuid = new UUID(androidID.GetHashCode(), (((long)telephonyDeviceID.GetHashCode()) << 32) | telephonySIMSerialNumber.GetHashCode());
+                deviceID = deviceUuid.ToString();
+            }
+            catch
+            {
+                deviceID = "";
+                Android.Widget.Toast.MakeText(this, "Не удалось найти device ID", Android.Widget.ToastLength.Short).Show();
+            }
+
+            //Android.Widget.Toast.MakeText(this, deviceID, Android.Widget.ToastLength.Short).Show();
+
+            return deviceID;
+        }
+
+        /// <summary>
+        /// Находит ID профиля зарегистрированного на это устройство, сохраняя в Global
+        /// </summary>
+        /// <returns>Номер профиля</returns>
+        protected int find_main_profile()
+        {
+            string deviceID = get_phone_id();
+            if (string.IsNullOrEmpty(deviceID))
+                return int.MaxValue;
+
+            // Запись в глобальное пространство переменных
+            Global.deviceID = deviceID;
+
+            Profile profile = database.getProfileByDevice(deviceID);
+            if (profile == null)
+                return int.MaxValue;
+
+            // Запись в глобальное пространство переменных
+            Global.userID = profile.ID;
+
+            return profile.ID;
         }
 	}
 }
