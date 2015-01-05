@@ -45,7 +45,7 @@ namespace healthy_eating
 		/// <summary>
 		/// Добавляет новый "профиль пользователя" в базу.
 		/// </summary>
-        public Profile addProfile(string _deviceID, string _name, float _current_weight, float _desired_weight, 
+        public Profile addProfile(string _deviceID, string _name, int _current_weight, int _desired_weight, 
                                   int _growth, int _age, bool _man, bool _show_recommends)
         {
 			// Добавляем новый профиль
@@ -249,8 +249,8 @@ namespace healthy_eating
 		public int ID { get; set; }
         public string deviceID { get; set; }
         public string name { get; set; }
-		public float current_weight { get; set; }
-		public float desired_weight { get; set; }
+		public int current_weight { get; set; }
+		public int desired_weight { get; set; }
 		public int growth { get; set; }
 		public int age { get; set; }
         public bool man { get; set; }
