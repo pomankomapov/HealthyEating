@@ -23,7 +23,7 @@ namespace healthy_eating
 		protected TextView  txt_stat_pfc;      // БЖУ
 		protected TextView  txt_stat_water;    // Вода
 		protected TextView  txt_stat_training; // Упражнения
-
+      
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -59,18 +59,19 @@ namespace healthy_eating
             Global.deviceID = "noneID";
             Global.userID = int.MaxValue;
 
+            HEDB database = new HEDB();
+            //database.delAll(); // Временно
+
             profileID = find_main_profile();
             if (profileID == int.MaxValue) // Профиля нет
                 StartActivity(typeof(ProfileActivity));
 			fill_data ();
-            HEDB database = new HEDB();
 
-            database.delAll(); // Временно
             database.delAllFood();
             database.addFood(0, "Яблоко", 45, 0, 70, 100, 3);
             database.addFood(1, "Абрикос", 45, 0, 70, 100, 3);
             database.addFood(2, "Молоко", 45, 0, 70, 100, 3);
-		}
+		} 
 
 		static string value_to_str(int value)
 		{
