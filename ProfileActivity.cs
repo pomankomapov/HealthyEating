@@ -217,11 +217,11 @@ namespace healthy_eating
 
             // Вес /////////////////////////////////////////////////////////////////////////////////////////
 
-            float current_weight, desired_weight;
+            int current_weight, desired_weight;
             current_weight = desired_weight = 0;
 
-            float.TryParse(edt_weight.Text, out current_weight);
-            float.TryParse(edt_target_weight.Text, out desired_weight);
+            int.TryParse(edt_weight.Text, out current_weight);
+            int.TryParse(edt_target_weight.Text, out desired_weight);
 
             // Сохранение данных ///////////////////////////////////////////////////////////////////////////
 
