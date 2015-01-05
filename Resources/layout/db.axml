@@ -12,28 +12,119 @@
         p1:layout_width="match_parent"
         p1:layout_height="match_parent"
         p1:id="@+id/relativeLayout1"
-        p1:background="#ffffffff">
+        p1:background="#ffffffff"
+        p1:paddingRight="10dp"
+        p1:paddingLeft="10dp"
+        p1:paddingTop="10dp"
+        p1:paddingBottom="10dp">
+        <TableLayout
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/tableLayout1"
+            p1:stretchColumns="2,1">
+            <TableRow
+                p1:id="@+id/tableRow1">
+                <TextView
+                    p1:text="Продукт:"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_column="0"
+                    p1:id="@+id/textView16"
+                    p1:textColor="#ff000000"
+                    p1:layout_width="146.2dp" />
+                <EditText
+                    p1:layout_column="1"
+                    p1:id="@+id/editText_db_food"
+                    p1:singleLine="true" />
+            </TableRow>
+            <TableRow
+                p1:id="@+id/tableRow3">
+                <TextView
+                    p1:text="Белки:"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_column="0"
+                    p1:id="@+id/textView17"
+                    p1:textColor="#ff000000" />
+                <EditText
+                    p1:inputType="numberDecimal"
+                    p1:layout_column="1"
+                    p1:id="@+id/editText_db_proteins" />
+            </TableRow>
+            <TableRow
+                p1:id="@+id/tableRow2">
+                <TextView
+                    p1:text="Жиры:"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_column="0"
+                    p1:id="@+id/textView18"
+                    p1:textColor="#ff000000" />
+                <EditText
+                    p1:inputType="numberDecimal"
+                    p1:layout_column="1"
+                    p1:id="@+id/editText_db_fats" />
+            </TableRow>
+            <TableRow
+                p1:id="@+id/tableRow5">
+                <TextView
+                    p1:text="Углеводы:"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_column="0"
+                    p1:id="@+id/textView19"
+                    p1:textColor="#ff000000" />
+                <EditText
+                    p1:inputType="numberDecimal"
+                    p1:layout_column="1"
+                    p1:id="@+id/editText_db_carbs" />
+            </TableRow>
+            <TableRow
+                p1:id="@+id/tableRow4"
+                p1:layout_height="24.2dp">
+                <TextView
+                    p1:text="Калорийность:"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_column="0"
+                    p1:id="@+id/textView20"
+                    p1:textColor="#ff000000" />
+                <EditText
+                    p1:inputType="numberDecimal"
+                    p1:layout_column="1"
+                    p1:id="@+id/editText_db_calories" />
+            </TableRow>
+        </TableLayout>
         <LinearLayout
             p1:orientation="horizontal"
             p1:minWidth="25px"
             p1:minHeight="25px"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
+            p1:layout_below="@id/tableLayout1"
             p1:id="@+id/linearLayout1">
-            <TextView
-                p1:text="Medium Text"
-                p1:textAppearance="?android:attr/textAppearanceMedium"
+            <Button
+                p1:text="Выбрать продукт"
                 p1:layout_width="wrap_content"
                 p1:layout_height="match_parent"
-                p1:id="@+id/textView1"
-                p1:textColor="#ff000000" />
-            <TextView
-                p1:text="Medium Text"
-                p1:textAppearance="?android:attr/textAppearanceMedium"
+                p1:id="@+id/button_db_select" />
+            <Button
+                p1:text="Сохранить"
                 p1:layout_width="wrap_content"
                 p1:layout_height="match_parent"
-                p1:id="@+id/textView2"
-                p1:textColor="#ff000000" />
+                p1:id="@+id/button_db_save" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/linearLayout1"
+            p1:id="@+id/linearLayout2">
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                p1:layout_width="match_parent"
+                p1:layout_height="match_parent"
+                p1:id="@+id/progressBar_db"
+                p1:visibility="invisible" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
