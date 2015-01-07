@@ -49,7 +49,8 @@
                 <EditText
                     p1:inputType="numberDecimal"
                     p1:layout_column="1"
-                    p1:id="@+id/editText_db_proteins" />
+                    p1:id="@+id/editText_db_proteins"
+                    p1:hint="на 100г" />
             </TableRow>
             <TableRow
                 p1:id="@+id/tableRow2">
@@ -62,7 +63,8 @@
                 <EditText
                     p1:inputType="numberDecimal"
                     p1:layout_column="1"
-                    p1:id="@+id/editText_db_fats" />
+                    p1:id="@+id/editText_db_fats"
+                    p1:hint="на 100г" />
             </TableRow>
             <TableRow
                 p1:id="@+id/tableRow5">
@@ -75,7 +77,8 @@
                 <EditText
                     p1:inputType="numberDecimal"
                     p1:layout_column="1"
-                    p1:id="@+id/editText_db_carbs" />
+                    p1:id="@+id/editText_db_carbs"
+                    p1:hint="на 100г" />
             </TableRow>
             <TableRow
                 p1:id="@+id/tableRow4"
@@ -89,7 +92,8 @@
                 <EditText
                     p1:inputType="numberDecimal"
                     p1:layout_column="1"
-                    p1:id="@+id/editText_db_calories" />
+                    p1:id="@+id/editText_db_calories"
+                    p1:hint="Ккал" />
             </TableRow>
         </TableLayout>
         <LinearLayout

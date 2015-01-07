@@ -30,6 +30,9 @@ namespace healthy_eating
 
 		}
 
+        /// <summary>
+        /// Очищает все таблицы
+        /// </summary>
         public void delAll()
         {
             hedb.DeleteAll<Profile>();
@@ -69,7 +72,7 @@ namespace healthy_eating
             try
             {
                 var query = hedb.Table<Profile>().Where(x => x.ID == ID);
-                result = query.ElementAt(0);
+                result = query.First();
             }
             catch
             {
@@ -148,13 +151,11 @@ namespace healthy_eating
         /// Adds the lifestyle.
         /// </summary>
         /// <returns>The lifestyle.</returns>
-        /// <param name="_ID">I.</param>
         /// <param name="_name">Name.</param>
-        public Lifestyle addLifestyle(int _ID, string _name)
+        public Lifestyle addLifestyle(string _name)
         {
             // Добавляем новый профиль
             var _lifestyle = new Lifestyle {
-                ID = _ID,
                 name = _name
             };
             hedb.Insert (_lifestyle);
@@ -186,18 +187,16 @@ namespace healthy_eating
         /// Добавляет продукт в базу
         /// </summary>
         /// <returns>Продукт</returns>
-        /// <param name="_ID">Номер</param>
         /// <param name="_name">Имя</param>
         /// <param name="_proteins">Белки</param>
         /// <param name="_fats">Жиры</param>
         /// <param name="_carbs">Угдеводы</param>
         /// <param name="_calories">Калории</param>
         /// <param name="_ProfileID">Номер профиля добавившего продукт</param>
-        public Food addFood(int _ID, string _name, int _proteins, int _fats, int _carbs, int _calories, int _ProfileID)
+        public Food addFood(string _name, int _proteins, int _fats, int _carbs, int _calories, int _ProfileID)
         {
             // Добавляем новый профиль
             var _food = new Food {
-                 ID        = _ID,
                  name      = _name, 
                  proteins  = _proteins,  
                  fats      = _fats, 
@@ -211,8 +210,32 @@ namespace healthy_eating
 
         public Food getFood(int ID)
         {
-            var query = hedb.Table<Food>().Where(x => x.ID == ID);
-            var result = query.ElementAt(0);
+            Food result;
+            try
+            {
+                var query = hedb.Table<Food>().Where(x => x.ID == ID);
+                result = query.First();
+            }
+            catch
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
+        public Food findFood(string name)
+        {
+            Food result;
+            try
+            {
+                var query = hedb.Table<Food>().Where(x => x.name == name);
+                result = query.First();
+            }
+            catch
+            {
+                result = null;
+            }
 
             return result;
         }

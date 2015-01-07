@@ -64,9 +64,7 @@ namespace healthy_eating
 
         protected void update_food()
         {
-            // Сначала ищем в базе продукт
-            // TODO: написать подобие хеш-функции
-            //      для определения похожих названий
+            // Считываем значения и проверяем правильность ввода ///////////////////////////////////
 
             string name = edt_food.Text.Trim();
 
@@ -79,18 +77,52 @@ namespace healthy_eating
 
             int p, f, c; // Proteins, fats, carbs
             int calories;
-            p = f = c = calories = 0;
+            p = f = c = calories = -1;
 
-            int.TryParse(edt_proteins.Text, out p);
-            int.TryParse(edt_fats.Text,     out f);
-            int.TryParse(edt_carbs.Text,    out c);
-            int.TryParse(edt_calories.Text, out calories);
+            bool success = true;
+            success &= int.TryParse(edt_proteins.Text, out p);
+            success &= int.TryParse(edt_fats.Text,     out f);
+            success &= int.TryParse(edt_carbs.Text,    out c);
+            success &= int.TryParse(edt_calories.Text, out calories);
 
             // Проверки на разумные значения
-            if (p < 0 || f < 0 || c < 0 || calories < 0)
+            if (!success || p < 0 || f < 0 || c < 0 || calories < 0)
             {
-
+                Global.print(this, "Не все поля заполнены правильно");
+                return;
             }
+
+            if (p > 100)
+            {
+                Global.print(this, "Количество белков выше разумной нормы");
+                return;
+            }
+
+            if (f > 100)
+            {
+                Global.print(this, "Количество жиров выше разумной нормы");
+                return;
+            }
+
+            if (c > 100)
+            {
+                Global.print(this, "Количество углеводов выше разумной нормы");
+                return;
+            }
+
+            // Ищем продукт в базе ///////////////////////////////////////////////////////////////
+
+            string food_name = name.ToLower();
+            Food food = database.findFood(food_name);
+
+            // Если продукт существует, то удаляем его
+            if (food != null)
+                database.delFood(food.ID);
+
+            // Создаём запись по введённым данным
+            database.addFood(food_name, p, f, c, calories, Global.userID);
+
+            Global.print(this, string.Format("Добавлен продукт {0}", name));
         }
 	}
 }

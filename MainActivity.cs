@@ -67,18 +67,11 @@ namespace healthy_eating
                 StartActivity(typeof(ProfileActivity));
 			fill_data ();
 
-            database.delAllFood();
-            database.addFood(0, "Яблоко", 45, 0, 70, 100, 3);
-            database.addFood(1, "Абрикос", 45, 0, 70, 100, 3);
-            database.addFood(2, "Молоко", 45, 0, 70, 100, 3);
+            database.delAllFood(); // Проверка работоспособности
+            database.addFood("Яблоко", 45, 0, 70, 100, 3);
+            database.addFood("Абрикос", 45, 0, 70, 100, 3);
+            database.addFood("Молоко", 45, 0, 70, 100, 3);
 		} 
-
-		static string value_to_str(int value)
-		{
-			if (value != 0)
-				return string.Format("{0}", value);
-			return "--";
-		}
 
 		/// <summary>
 		/// Заполняет данные о пользователе для вывода в активности
@@ -88,11 +81,11 @@ namespace healthy_eating
 		{
 			string str_weight =  string.Format("");
 
-			txt_stat_weight.Text = value_to_str(weight) + " кг";
-			txt_stat_calories.Text = value_to_str(calories) + " Ккал";
-			txt_stat_pfc.Text = value_to_str(p) + "/" + value_to_str(f) + "/" + value_to_str(c);
-			txt_stat_water.Text = value_to_str(water) + " л";
-			txt_stat_training.Text = value_to_str(-training) + " Ккал"; // Сжигание
+            txt_stat_weight.Text = Global.val2str(weight) + " кг";
+            txt_stat_calories.Text = Global.val2str(calories) + " Ккал";
+            txt_stat_pfc.Text = Global.val2str(p) + "/" + Global.val2str(f) + "/" + Global.val2str(c);
+            txt_stat_water.Text = Global.val2str(water) + " л";
+            txt_stat_training.Text = Global.val2str(-training) + " Ккал"; // Сжигание
 		}
 
         protected string get_phone_id()

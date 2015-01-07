@@ -10,7 +10,7 @@ using Android.OS;
 
 namespace healthy_eating
 {
-    [Activity(Label = "Список продуктов", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Список продуктов", MainLauncher = false, Icon = "@drawable/icon")]
     public class ListFood : ListActivity
     {
         static HEDB database = new HEDB();
