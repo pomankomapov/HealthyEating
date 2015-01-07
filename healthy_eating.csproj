@@ -57,6 +57,7 @@
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="ListFood.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="FoodActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -80,6 +81,7 @@
     <AndroidResource Include="Resources\drawable\user62.png" />
     <AndroidResource Include="Resources\layout\db.axml" />
     <AndroidResource Include="Resources\layout\temp.axml" />
+    <AndroidResource Include="Resources\layout\foodlist.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>
