@@ -16,6 +16,13 @@ namespace healthy_eating
         {
             Android.Widget.Toast.MakeText(context, str, ToastLength.Short).Show();
         }
+
+        public static string val2str(int value)
+        {
+            if (value != 0)
+                return string.Format("{0}", value);
+            return "--";
+        }
     }
 }
 
