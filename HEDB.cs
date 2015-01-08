@@ -184,7 +184,7 @@ namespace healthy_eating
         // Методы для сущности "Продукты" /////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Добавляет продукт в базу
+        /// Добавляет продукт в базу. Принудительно понижает регистр!
         /// </summary>
         /// <returns>Продукт</returns>
         /// <param name="_name">Имя</param>
@@ -195,6 +195,8 @@ namespace healthy_eating
         /// <param name="_ProfileID">Номер профиля добавившего продукт</param>
         public Food addFood(string _name, int _proteins, int _fats, int _carbs, int _calories, int _ProfileID)
         {
+            _name = _name.ToLower().Trim();
+
             // Добавляем новый профиль
             var _food = new Food {
                  name      = _name, 
@@ -226,6 +228,8 @@ namespace healthy_eating
 
         public Food findFood(string name)
         {
+            name = name.Trim();
+
             Food result;
             try
             {

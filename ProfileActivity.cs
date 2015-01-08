@@ -172,6 +172,8 @@ namespace healthy_eating
                 edt_length.Text = string.Format("{0}", profile.growth);
                 edt_weight.Text = string.Format("{0}", profile.current_weight);
                 edt_target_weight.Text = string.Format("{0}", profile.desired_weight);
+                skb_weight.Progress = profile.current_weight;
+                skb_target_weight.Progress = profile.desired_weight;
             }
         }
 
@@ -189,7 +191,7 @@ namespace healthy_eating
             string name = edt_name.Text;
             if (string.IsNullOrEmpty(name))
             {
-                Android.Widget.Toast.MakeText(this, "Введите имя", Android.Widget.ToastLength.Short).Show();
+                Global.print(this, "Введите имя");
                 return false;
             }
 
@@ -206,7 +208,7 @@ namespace healthy_eating
             }
             else
             {
-                Android.Widget.Toast.MakeText(this, "Выберите пол", Android.Widget.ToastLength.Short).Show();
+                Global.print(this, "Выберите пол");
                 return false;
             }
 
@@ -225,7 +227,8 @@ namespace healthy_eating
 
             // Сохранение данных ///////////////////////////////////////////////////////////////////////////
 
-            Android.Widget.Toast.MakeText(this, Global.deviceID, Android.Widget.ToastLength.Short).Show();
+            // DEBUG: вывод номера устройства
+            //Android.Widget.Toast.MakeText(this, Global.deviceID, Android.Widget.ToastLength.Short).Show();
 
             // Запись существует
             if (Global.userID != int.MaxValue) database.delProfile(Global.userID);
