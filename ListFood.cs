@@ -24,16 +24,25 @@ namespace healthy_eating
 
             foreach (var food in foods)
             {
-                items.Add(string.Format("{0,-12} | {1}/{2}/{3}", food.name, food.proteins, food.fats, food.carbs));
+                items.Add(string.Format("{0,-24}", food.name));
             }
 
             ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, items);
         }
+
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            var t = items[position];
-            Android.Widget.Toast.MakeText(this, t, Android.Widget.ToastLength.Short).Show();
-            Console.WriteLine("Clicked on " + t);
+            string name = items[position];
+            Global.print(this, name);
+
+            Food food = database.findFood(name);
+
+            // Сохраняем выбор пользователя
+            if (food != null)
+                Global.choosed_food_ID = food.ID;
+
+            // Возвращаемся к предыдущему активити
+            base.OnBackPressed();
         }
     }
 }

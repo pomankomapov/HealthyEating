@@ -62,11 +62,30 @@ namespace healthy_eating
             };
 		}
 
+        protected override void OnResume()
+        {
+            // Always call the superclass first
+            base.OnResume();
+
+            // Если пользователь что-то выбрал
+            if (Global.choosed_food_ID == int.MaxValue)
+                return;
+
+            // То достаём из базы и пишем в контролы
+            Food food = database.getFood(Global.choosed_food_ID);
+
+            edt_food.Text = food.name;
+            edt_proteins.Text = string.Format("{0}", food.proteins);
+            edt_fats.Text = string.Format("{0}", food.fats);
+            edt_carbs.Text = string.Format("{0}", food.carbs);
+            edt_calories.Text = string.Format("{0}", food.calories);
+        }
+
         protected void update_food()
         {
             // Считываем значения и проверяем правильность ввода ///////////////////////////////////
 
-            string name = edt_food.Text.Trim();
+            string name = edt_food.Text.ToLower().Trim();
 
             // Проверки названия на корректность
             if (string.IsNullOrEmpty(name))

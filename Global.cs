@@ -12,6 +12,8 @@ namespace healthy_eating
         public static int userID { get; set; }       // ID пользователя этого устройства
         public static string deviceID { get; set; }  // ID устройства
 
+        public static int choosed_food_ID { get; set; } // ID выбранной еды из базы
+
         public static void print(Android.Content.Context context, string str)
         {
             Android.Widget.Toast.MakeText(context, str, ToastLength.Short).Show();

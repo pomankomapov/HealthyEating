@@ -29,8 +29,8 @@ namespace healthy_eating
 
 			// Получаем все контролы //////////////////////////////////////////////
 
-            btn_profile       = FindViewById <ImageButton>   (Resource.Id.button_profile);
-            btn_options       = FindViewById <ImageButton>   (Resource.Id.button_options);
+            btn_profile = FindViewById<ImageButton>(Resource.Id.button_profile);
+            btn_options = FindViewById<ImageButton>(Resource.Id.button_options);
 
 			// Назначаем действия /////////////////////////////////////////////////
 
@@ -48,6 +48,7 @@ namespace healthy_eating
 
             Global.deviceID = "noneID";
             Global.userID = int.MaxValue;
+            Global.choosed_food_ID = int.MaxValue;
 
             HEDB database = new HEDB();
             //database.delAll(); // Временно
@@ -83,12 +84,6 @@ namespace healthy_eating
             }
 
 			string str_weight = string.Format("");
-
-            //txt_stat_weight.Text = Global.val2str(weight) + " кг";
-            //txt_stat_calories.Text = Global.val2str(calories) + " Ккал";
-            //txt_stat_pfc.Text = Global.val2str(p) + "/" + Global.val2str(f) + "/" + Global.val2str(c);
-            //txt_stat_water.Text = Global.val2str(water) + " л";
-            //txt_stat_training.Text = Global.val2str(-training) + " Ккал"; // Сжигание
 		}
 
         protected string get_phone_id()
