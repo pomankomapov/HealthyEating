@@ -1,158 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
     p1:minHeight="25px"
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
-    p1:id="@+id/relativeLayout1"
+    p1:id="@+id/scrollView1"
     p1:background="#ffffffff">
-    <LinearLayout
-        p1:orientation="horizontal"
+    <RelativeLayout
         p1:minWidth="25px"
         p1:minHeight="25px"
-        p1:id="@+id/linear_buttons"
-        p1:gravity="right"
         p1:layout_width="match_parent"
-        p1:layout_height="wrap_content">
-        <Button
-            p1:layout_width="wrap_content"
+        p1:layout_height="match_parent"
+        p1:id="@+id/relativeLayout1"
+        p1:background="#ffffffff">
+        <ImageView
+            p1:src="@drawable/healthy_eating"
+            p1:layout_width="match_parent"
+            p1:layout_height="64.2dp"
+            p1:id="@+id/imageView1"
+            p1:scaleType="centerInside"
+            p1:layout_marginBottom="10dp" />
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/button_profile"
-            p1:text="Профиль" />
-        <Button
-            p1:layout_width="wrap_content"
+            p1:layout_below="@id/imageView1"
+            p1:id="@+id/linearLayout1"
+            p1:gravity="center_horizontal">
+            <ImageButton
+                p1:src="@drawable/wei"
+                p1:layout_height="120dp"
+                p1:id="@+id/imageButton1"
+                p1:scaleType="fitCenter"
+                p1:layout_width="120dp"
+                p1:background="#ffffffff"
+                p1:layout_marginRight="40dp"
+                p1:layout_marginBottom="20dp" />
+            <ImageButton
+                p1:src="@drawable/training"
+                p1:layout_width="120dp"
+                p1:layout_height="120dp"
+                p1:id="@+id/imageButton2"
+                p1:scaleType="fitCenter"
+                p1:background="#ffffffff" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
-            p1:id="@+id/button_options"
-            p1:text="Настройки" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:id="@+id/stat_weight"
-        p1:tag="Вес"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@+id/linear_buttons">
-        <TextView
-            p1:text="Вес:"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:id="@+id/textView3"
-            p1:textColor="#ff000000" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_below="@id/linearLayout1"
+            p1:id="@+id/linearLayout2"
+            p1:gravity="center_horizontal">
+            <ImageButton
+                p1:src="@drawable/food"
+                p1:layout_width="120dp"
+                p1:layout_height="120dp"
+                p1:id="@+id/imageButton3"
+                p1:scaleType="fitCenter"
+                p1:background="#ffffffff"
+                p1:layout_marginRight="40dp"
+                p1:layout_marginBottom="20dp" />
+            <ImageButton
+                p1:src="@drawable/water"
+                p1:layout_width="120dp"
+                p1:layout_height="120dp"
+                p1:id="@+id/imageButton4"
+                p1:scaleType="fitCenter"
+                p1:background="#ffffffff" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
             p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
-            p1:id="@+id/text_stat_weight"
-            p1:textColor="#ff000000"
-            p1:layout_gravity="right"
-            p1:layout_weight="1"
-            p1:gravity="right"
-            p1:layout_marginRight="10dp" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:id="@+id/stat_calories"
-        p1:tag="Калории"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@+id/stat_weight">
-        <TextView
-            p1:text="Калории:"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:id="@+id/textView4"
-            p1:textColor="#ff000000" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
-            p1:id="@+id/text_stat_calories"
-            p1:textColor="#ff000000"
-            p1:gravity="right"
-            p1:layout_marginRight="10dp" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:id="@+id/stat_pfc"
-        p1:tag="БЖУ"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@+id/stat_calories">
-        <TextView
-            p1:text="БЖУ:"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:id="@+id/textView5"
-            p1:textColor="#ff000000" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
-            p1:id="@+id/text_stat_pfc"
-            p1:textColor="#ff000000"
-            p1:gravity="right"
-            p1:layout_marginRight="10dp" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/stat_pfc"
-        p1:id="@+id/stat_water">
-        <TextView
-            p1:text="Вода:"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:id="@+id/textView9"
-            p1:textColor="#ff000000" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
-            p1:id="@+id/text_stat_water"
-            p1:textColor="#ff000000"
-            p1:layout_gravity="right"
-            p1:layout_weight="1"
-            p1:layout_marginRight="10dp"
-            p1:gravity="right" />
-    </LinearLayout>
-    <LinearLayout
-        p1:orientation="horizontal"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:id="@+id/stat_training"
-        p1:tag="Упражнения"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@+id/stat_water">
-        <TextView
-            p1:text="Упражнения:"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:id="@+id/textView7"
-            p1:textColor="#ff000000" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
-            p1:id="@+id/text_stat_training"
-            p1:textColor="#ff000000"
-            p1:layout_marginRight="10dp"
-            p1:gravity="right"
-            p1:layout_gravity="right"
-            p1:layout_weight="1" />
-    </LinearLayout>
-</RelativeLayout>
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/linearLayout2"
+            p1:id="@+id/linearLayout3"
+            p1:gravity="center_horizontal">
+            <ImageButton
+                p1:src="@drawable/time"
+                p1:layout_width="120dp"
+                p1:layout_height="120dp"
+                p1:id="@+id/button_options"
+                p1:scaleType="fitCenter"
+                p1:background="#ffffffff"
+                p1:layout_marginRight="40dp" />
+            <ImageButton
+                p1:src="@drawable/profile"
+                p1:layout_width="120dp"
+                p1:layout_height="120dp"
+                p1:id="@+id/button_profile"
+                p1:scaleType="fitCenter"
+                p1:background="#ffffffff" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

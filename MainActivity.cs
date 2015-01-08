@@ -15,14 +15,9 @@ namespace healthy_eating
 	public class MainActivity : Activity
 	{
         static HEDB database = new HEDB();
-        static int profileID = int.MaxValue;   // ID профиля пользователя
-		protected Button    btn_profile;       // Кнопка профиля
-		protected Button    btn_options;       // Кнопка настроек
-		protected TextView  txt_stat_weight;   // Вес
-		protected TextView  txt_stat_calories; // Калории
-		protected TextView  txt_stat_pfc;      // БЖУ
-		protected TextView  txt_stat_water;    // Вода
-		protected TextView  txt_stat_training; // Упражнения
+        static int profileID = int.MaxValue;     // ID профиля пользователя
+        protected ImageButton btn_profile;       // Кнопка профиля
+        protected ImageButton btn_options;       // Кнопка настроек
       
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -34,13 +29,8 @@ namespace healthy_eating
 
 			// Получаем все контролы //////////////////////////////////////////////
 
-			btn_profile       = FindViewById <Button>   (Resource.Id.button_profile);
-			btn_options       = FindViewById <Button>   (Resource.Id.button_options);
-			txt_stat_weight   = FindViewById <TextView> (Resource.Id.text_stat_weight);
-			txt_stat_calories = FindViewById <TextView> (Resource.Id.text_stat_calories);
-			txt_stat_pfc      = FindViewById <TextView> (Resource.Id.text_stat_pfc);
-			txt_stat_water    = FindViewById <TextView> (Resource.Id.text_stat_water);
-			txt_stat_training = FindViewById <TextView> (Resource.Id.text_stat_training);
+            btn_profile       = FindViewById <ImageButton>   (Resource.Id.button_profile);
+            btn_options       = FindViewById <ImageButton>   (Resource.Id.button_options);
 
 			// Назначаем действия /////////////////////////////////////////////////
 
@@ -65,7 +55,7 @@ namespace healthy_eating
             profileID = find_main_profile();
             if (profileID == int.MaxValue) // Профиля нет
                 StartActivity(typeof(ProfileActivity));
-			fill_data ();
+			fill_data();
 
             database.delAllFood(); // Проверка работоспособности
             database.addFood("Яблоко", 45, 0, 70, 100, 3);
@@ -76,16 +66,29 @@ namespace healthy_eating
 		/// <summary>
 		/// Заполняет данные о пользователе для вывода в активности
 		/// </summary>
-		protected void fill_data(int weight = 0, int calories = 0, int p = 0, int f = 0,
-								 int c = 0, int water = 0, int training = 0)
+		protected void fill_data()
 		{
-			string str_weight =  string.Format("");
+            int weight, calories, p, f, c, water, training;
+            weight = calories = p = f = c = water = training = 0;
 
-            txt_stat_weight.Text = Global.val2str(weight) + " кг";
-            txt_stat_calories.Text = Global.val2str(calories) + " Ккал";
-            txt_stat_pfc.Text = Global.val2str(p) + "/" + Global.val2str(f) + "/" + Global.val2str(c);
-            txt_stat_water.Text = Global.val2str(water) + " л";
-            txt_stat_training.Text = Global.val2str(-training) + " Ккал"; // Сжигание
+            // Читаем из базы информацию по пользователю
+            Profile profile = database.getProfile(Global.userID);
+            if (profile != null)
+            {
+                weight = profile.current_weight;
+                calories = 0;
+                p = f = c = 0; // TODO: Где сохранять дневное потребление?
+                water = 0;
+                training = 0;
+            }
+
+			string str_weight = string.Format("");
+
+            //txt_stat_weight.Text = Global.val2str(weight) + " кг";
+            //txt_stat_calories.Text = Global.val2str(calories) + " Ккал";
+            //txt_stat_pfc.Text = Global.val2str(p) + "/" + Global.val2str(f) + "/" + Global.val2str(c);
+            //txt_stat_water.Text = Global.val2str(water) + " л";
+            //txt_stat_training.Text = Global.val2str(-training) + " Ккал"; // Сжигание
 		}
 
         protected string get_phone_id()
