@@ -17,7 +17,7 @@
         <Button
             p1:text="Настроить базу"
             p1:layout_width="wrap_content"
-            p1:layout_height="37dp"
+            p1:layout_height="wrap_content"
             p1:id="@+id/button_db_options"
             p1:layout_gravity="top" />
     </LinearLayout>

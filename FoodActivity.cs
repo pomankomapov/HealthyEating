@@ -22,7 +22,7 @@ namespace healthy_eating
         {
             base.OnCreate(bundle);
 
-            // Ставим нужный layout //////////////////////////////////////////////
+            // Ставим нужный layout ///////////////////////////////////////////////
 
             SetContentView (Resource.Layout.foodlist);
 

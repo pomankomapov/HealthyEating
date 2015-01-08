@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
-    p1:orientation="vertical"
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
     p1:minHeight="25px"
-    p1:id="@+id/linearLayout1"
+    p1:id="@+id/relativeLayout1"
     p1:background="#ffffffff"
     p1:layout_width="match_parent"
     p1:layout_height="match_parent">
@@ -11,46 +10,30 @@
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
+        p1:id="@+id/linear_buttons"
+        p1:gravity="right"
         p1:layout_width="match_parent"
-        p1:layout_height="42.1dp"
-        p1:id="@+id/stat_header"
-        p1:tag="Заголовок и кнопки">
-        <LinearLayout
-            p1:orientation="horizontal"
-            p1:minWidth="25px"
-            p1:minHeight="25px"
+        p1:layout_height="wrap_content">
+        <Button
             p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:id="@+id/linearLayout6"
-            p1:layout_gravity="right"
-            p1:gravity="right"
-            p1:layout_weight="2">
-            <Spinner
-                p1:layout_width="wrap_content"
-                p1:layout_height="match_parent"
-                p1:id="@+id/spinner1"
-                p1:layout_gravity="left"
-                p1:layout_weight="1" />
-            <Button
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/button_profile"
-                p1:text="Профиль" />
-            <Button
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/button_options"
-                p1:text="Настройки" />
-        </LinearLayout>
+            p1:layout_height="wrap_content"
+            p1:id="@+id/button_profile"
+            p1:text="Профиль" />
+        <Button
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/button_options"
+            p1:text="Настройки" />
     </LinearLayout>
     <LinearLayout
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
+        p1:id="@+id/stat_weight"
+        p1:tag="Вес"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/stat_weight"
-        p1:tag="Вес">
+        p1:layout_below="@+id/linear_buttons">
         <TextView
             p1:text="Вес:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -73,11 +56,11 @@
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
         p1:id="@+id/stat_calories"
         p1:tag="Калории"
-        p1:layout_marginRight="0.0dp">
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@+id/stat_weight">
         <TextView
             p1:text="Калории:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -98,10 +81,11 @@
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
+        p1:id="@+id/stat_pfc"
+        p1:tag="БЖУ"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/stat_pfc"
-        p1:tag="БЖУ">
+        p1:layout_below="@+id/stat_calories">
         <TextView
             p1:text="БЖУ:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -124,14 +108,14 @@
         p1:minHeight="25px"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/stat_water"
-        p1:tag="Вода">
+        p1:layout_below="@id/stat_pfc"
+        p1:id="@+id/stat_water">
         <TextView
             p1:text="Вода:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="wrap_content"
             p1:layout_height="match_parent"
-            p1:id="@+id/textView6"
+            p1:id="@+id/textView9"
             p1:textColor="#ff000000" />
         <TextView
             p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -139,6 +123,8 @@
             p1:layout_height="match_parent"
             p1:id="@+id/text_stat_water"
             p1:textColor="#ff000000"
+            p1:layout_gravity="right"
+            p1:layout_weight="1"
             p1:layout_marginRight="10dp"
             p1:gravity="right" />
     </LinearLayout>
@@ -146,10 +132,11 @@
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
+        p1:id="@+id/stat_training"
+        p1:tag="Упражнения"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/stat_training"
-        p1:tag="Упражнения">
+        p1:layout_below="@+id/stat_water">
         <TextView
             p1:text="Упражнения:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -164,6 +151,8 @@
             p1:id="@+id/text_stat_training"
             p1:textColor="#ff000000"
             p1:layout_marginRight="10dp"
-            p1:gravity="right" />
+            p1:gravity="right"
+            p1:layout_gravity="right"
+            p1:layout_weight="1" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
