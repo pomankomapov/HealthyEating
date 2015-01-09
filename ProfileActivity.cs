@@ -140,29 +140,6 @@ namespace healthy_eating
             spn_lifestyle.Adapter = adapter;
 
             // Аллергенные продукты
-            /*
-            spn_allergic.ItemSelected += (sender, e) => {
-                if (userClick) // Ahhahhahaa!!! Caught!
-                {
-                    Spinner spinner = (Spinner)sender;
-                    string name = (string)spinner.GetItemAtPosition (e.Position);
-                    Food food = database.findFood(name);
-
-                    // Если аллергенные продукты существуют для данного пользователя
-                    if (database.getAllergic(Global.userID) != null)
-                    {
-                        // Найден продукт
-                        if (food != null)
-                        {
-                            database.delAllergic(food.ID);
-                            update_allergic();
-                        }
-                    }
-                }
-                userClick = true; // You make me!
-            };
-            */
-
             btn_choose.Click += (sender, e) => {
                 var activity = new Intent (this, typeof(ListFood));
                 activity.PutExtra("mode", "Allergic");
