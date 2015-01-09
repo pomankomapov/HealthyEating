@@ -127,11 +127,14 @@ namespace healthy_eating
 			// aapt resource value: 0x7f06002e
 			public const int button_choose_food = 2131099694;
 			
-			// aapt resource value: 0x7f060020
-			public const int button_db_options = 2131099680;
+			// aapt resource value: 0x7f060016
+			public const int button_db_delete = 2131099670;
 			
-			// aapt resource value: 0x7f060014
-			public const int button_db_save = 2131099668;
+			// aapt resource value: 0x7f060018
+			public const int button_db_destroy = 2131099672;
+			
+			// aapt resource value: 0x7f060015
+			public const int button_db_save = 2131099669;
 			
 			// aapt resource value: 0x7f060013
 			public const int button_db_select = 2131099667;
@@ -139,11 +142,11 @@ namespace healthy_eating
 			// aapt resource value: 0x7f06002f
 			public const int button_delete = 2131099695;
 			
-			// aapt resource value: 0x7f06001e
-			public const int button_options = 2131099678;
-			
 			// aapt resource value: 0x7f06001f
-			public const int button_profile = 2131099679;
+			public const int button_options = 2131099679;
+			
+			// aapt resource value: 0x7f060020
+			public const int button_profile = 2131099680;
 			
 			// aapt resource value: 0x7f060011
 			public const int editText_db_calories = 2131099665;
@@ -172,29 +175,29 @@ namespace healthy_eating
 			// aapt resource value: 0x7f060034
 			public const int edit_weight = 2131099700;
 			
-			// aapt resource value: 0x7f060019
-			public const int imageButton1 = 2131099673;
-			
-			// aapt resource value: 0x7f06001a
-			public const int imageButton2 = 2131099674;
-			
 			// aapt resource value: 0x7f06001b
-			public const int imageButton3 = 2131099675;
+			public const int imageButton1 = 2131099675;
 			
 			// aapt resource value: 0x7f06001c
-			public const int imageButton4 = 2131099676;
+			public const int imageButton2 = 2131099676;
 			
-			// aapt resource value: 0x7f060018
-			public const int imageView1 = 2131099672;
+			// aapt resource value: 0x7f06001d
+			public const int imageButton3 = 2131099677;
+			
+			// aapt resource value: 0x7f06001e
+			public const int imageButton4 = 2131099678;
+			
+			// aapt resource value: 0x7f06001a
+			public const int imageView1 = 2131099674;
 			
 			// aapt resource value: 0x7f060012
 			public const int linearLayout1 = 2131099666;
 			
-			// aapt resource value: 0x7f060015
-			public const int linearLayout2 = 2131099669;
+			// aapt resource value: 0x7f060014
+			public const int linearLayout2 = 2131099668;
 			
-			// aapt resource value: 0x7f06001d
-			public const int linearLayout3 = 2131099677;
+			// aapt resource value: 0x7f060017
+			public const int linearLayout3 = 2131099671;
 			
 			// aapt resource value: 0x7f060028
 			public const int linearLayout4 = 2131099688;
@@ -211,11 +214,8 @@ namespace healthy_eating
 			// aapt resource value: 0x7f06003c
 			public const int linear_buttons = 2131099708;
 			
-			// aapt resource value: 0x7f060017
-			public const int listView_food = 2131099671;
-			
-			// aapt resource value: 0x7f060016
-			public const int progressBar_db = 2131099670;
+			// aapt resource value: 0x7f060019
+			public const int listView_food = 2131099673;
 			
 			// aapt resource value: 0x7f060024
 			public const int radioGroup1 = 2131099684;
@@ -357,13 +357,10 @@ namespace healthy_eating
 			public const int main = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int options = 2130903043;
+			public const int profile = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int profile = 2130903044;
-			
-			// aapt resource value: 0x7f030005
-			public const int temp = 2130903045;
+			public const int temp = 2130903044;
 			
 			static Layout()
 			{

@@ -41,7 +41,7 @@ namespace healthy_eating
 
 			btn_options.Click += (sender, e) =>
 			{
-				StartActivity(typeof(OptionsActivity));
+                StartActivity(typeof(DataBaseActivity));
 			};
 
 			// Задачи во время запуска активности /////////////////////////////////

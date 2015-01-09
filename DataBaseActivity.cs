@@ -9,10 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android;
 
 namespace healthy_eating
 {
-	[Activity (Label = "База данных")]			
+	[Activity (Label = "Редактирование списка продуктов")]			
 	public class DataBaseActivity : Activity
 	{
         static HEDB database = new HEDB();
@@ -24,7 +25,9 @@ namespace healthy_eating
         protected TextView     edt_calories;
         protected Button       btn_select;
         protected Button       btn_save;
-        protected ProgressBar  prb_saving;
+        protected Button       btn_delete;
+        protected Button       btn_destroy;
+
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -43,7 +46,8 @@ namespace healthy_eating
             edt_calories = FindViewById<TextView>(Resource.Id.editText_db_calories);
             btn_select   = FindViewById<Button>(Resource.Id.button_db_select);
             btn_save     = FindViewById<Button>(Resource.Id.button_db_save);
-            prb_saving   = FindViewById<ProgressBar>(Resource.Id.progressBar_db);
+            btn_delete   = FindViewById<Button>(Resource.Id.button_db_delete);
+            btn_destroy  = FindViewById<Button>(Resource.Id.button_db_destroy);
 
             // Назначаем действия /////////////////////////////////////////////////
 
@@ -52,13 +56,15 @@ namespace healthy_eating
             };
 
             btn_save.Click += (sender, e) => {
-                prb_saving.Visibility = ViewStates.Visible;
-                prb_saving.Enabled = true;
-
                 update_food();
+            };
 
-                prb_saving.Enabled = false;
-                prb_saving.Visibility = ViewStates.Invisible;
+            btn_delete.Click += (sender, e) => {
+                delete_food();
+            };
+
+            btn_destroy.Click += (sender, e) => {
+                destroy_food();
             };
 		}
 
@@ -83,6 +89,8 @@ namespace healthy_eating
 
         protected void update_food()
         {
+            bool was = false; // Продукт был в базе
+
             // Считываем значения и проверяем правильность ввода ///////////////////////////////////
 
             string name = edt_food.Text.ToLower().Trim();
@@ -136,12 +144,60 @@ namespace healthy_eating
 
             // Если продукт существует, то удаляем его
             if (food != null)
+            {
                 database.delFood(food.ID);
+                was = true;
+            }
 
             // Создаём запись по введённым данным
             database.addFood(food_name, p, f, c, calories, Global.userID);
 
-            Global.print(this, string.Format("Добавлен продукт {0}", name));
+            if (was) Global.print(this, string.Format("Изменён продукт {0}", name));
+            else     Global.print(this, string.Format("Добавлен продукт {0}", name));
+        }
+
+        protected void delete_food()
+        {
+            string name = edt_food.Text.ToLower().Trim();
+
+            // Проверки названия на корректность
+            if (string.IsNullOrEmpty(name))
+            {
+                Global.print(this, "Такого продукта нет");
+                return;
+            }
+
+            // Ищем продукт в базе
+            Food food = database.findFood(name);
+
+            if (food == null)
+            {
+                Global.print(this, "Такого продукта нет");
+                return;
+            }
+
+            Global.print(this, string.Format("Удалён продукт {0}", name));
+            database.delFood(food.ID);
+            Global.choosed_food_ID = int.MaxValue; // Убираем выбор пользователя
+        }
+
+        protected void destroy_food()
+        {
+            Android.App.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog alertdialog = builder.Create();
+            alertdialog.SetTitle("Вы уверены?");
+            alertdialog.SetMessage("Очистку списка продуктов нельзя отменить");
+            alertdialog.SetButton("Да", (s, e) =>
+            {
+                    database.delAllFood();
+            });
+
+            alertdialog.SetButton2("Нет", (s, e) =>
+            {
+                    // Фууууфф..)
+            });
+
+            alertdialog.Show();
         }
 	}
 }
