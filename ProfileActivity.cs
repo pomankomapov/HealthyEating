@@ -173,6 +173,12 @@ namespace healthy_eating
             };
 
 			// Задачи во время запуска активности /////////////////////////////////
+
+            update_allergic();
+
+            // Проверяем, заходит ли пользователь первый раз сюда
+            if (Global.userID == int.MaxValue)
+                welcome();
 		}
 
         protected override void OnResume()
@@ -181,6 +187,31 @@ namespace healthy_eating
             base.OnResume();
 
             load_data();
+        }
+
+        public override void OnBackPressed()
+        {
+            // Проверяем, заходит ли пользователь первый раз сюда
+            if (Global.userID == int.MaxValue)
+            {
+                // Не даём выйти пока не заполнит профиль
+            }
+            else
+            {
+                // Идём назад
+                base.OnBackPressed();
+            }
+        }
+
+        protected void welcome()
+        {
+            Android.App.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog alertdialog = builder.Create();
+            alertdialog.SetTitle("Добро пожаловать!");
+            alertdialog.SetMessage("Это ваш первый вход, пожалуйста введите свои личные данные");
+            alertdialog.SetButton("Ок", (s, e) => {});
+
+            alertdialog.Show();
         }
 
         protected void load_data()
