@@ -120,8 +120,6 @@ namespace healthy_eating
                 Android.Widget.Toast.MakeText(this, "Не удалось найти device ID", Android.Widget.ToastLength.Short).Show();
             }
 
-            //Android.Widget.Toast.MakeText(this, deviceID, Android.Widget.ToastLength.Short).Show();
-
             return deviceID;
         }
 
