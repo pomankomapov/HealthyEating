@@ -51,8 +51,12 @@ namespace healthy_eating
                 if (Global.choosed_food_ID != int.MaxValue)
                 {
                     // Выбран аллергенный продукт
-                    //  добавляем в базу
-                    database.addAllergic(Global.userID, Global.choosed_food_ID);
+                    //  проверим, нет ли его в списке
+                    if (database.findAllergic(Global.userID, name) == null)
+                    {
+                        //  Всё хорошо, добавляем в базу
+                        database.addAllergic(Global.userID, Global.choosed_food_ID);
+                    }
                 }
             }
 
