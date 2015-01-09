@@ -31,6 +31,9 @@ namespace healthy_eating
         protected Button       btn_delete;        // Удалить продукт из списка аллергенных
         protected Button       btn_apply;         // Кнопка применения
         protected Button       btn_cancel;        // Кнопка отмены
+        private const int      min_length = 100;  // Минимальный рост
+        private const int      min_weight = 35;   // Минимальный вес
+        private const int      min_target_weight = 35;    // Минимальный целевой вес
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -63,8 +66,10 @@ namespace healthy_eating
 
 			// Назначаем действия /////////////////////////////////////////////////
 
+            //Контролы роста
 			skb_length.ProgressChanged += (sender, e) => {
-				edt_length.Text = string.Format("{0}", skb_length.Progress);
+                int new_length = min_length + skb_length.Progress;
+                edt_length.Text = string.Format("{0}", new_length);
 			};
 
 			edt_length.KeyPress += (sender, e) => {
@@ -82,8 +87,10 @@ namespace healthy_eating
 				}
 			};
 
+            //Контролы веса
             skb_weight.ProgressChanged += (sender, e) => {
-                edt_weight.Text = string.Format("{0}", skb_weight.Progress);
+                int new_weight = min_weight + skb_weight.Progress;
+                edt_weight.Text = string.Format("{0}", new_weight);
             };
 
             edt_weight.KeyPress += (sender, e) => {
@@ -101,8 +108,10 @@ namespace healthy_eating
                 }
             };
 
+            //Контролы желаемого веса
             skb_target_weight.ProgressChanged += (sender, e) => {
-                edt_target_weight.Text = string.Format("{0}", skb_target_weight.Progress);
+                int new_target_weight = min_target_weight + skb_target_weight.Progress;
+                edt_target_weight.Text = string.Format("{0}", new_target_weight);
             };
 
             edt_target_weight.KeyPress += (sender, e) => {
@@ -212,8 +221,9 @@ namespace healthy_eating
                 edt_length.Text = string.Format("{0}", profile.growth);
                 edt_weight.Text = string.Format("{0}", profile.current_weight);
                 edt_target_weight.Text = string.Format("{0}", profile.desired_weight);
-                skb_weight.Progress = profile.current_weight;
-                skb_target_weight.Progress = profile.desired_weight;
+                skb_length.Progress = profile.growth - min_length;
+                skb_weight.Progress = profile.current_weight - min_weight;
+                skb_target_weight.Progress = profile.desired_weight - min_target_weight;
 
                 update_allergic();
             }

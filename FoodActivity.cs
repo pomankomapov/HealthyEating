@@ -28,8 +28,6 @@ namespace healthy_eating
 
             // Получаем все контролы //////////////////////////////////////////////
 
-            lsv_food = FindViewById<ListView>(Resource.Id.listView_food);
-
             // Назначаем действия /////////////////////////////////////////////////
 
             //lsv_food.Adapter = new AdapterView();

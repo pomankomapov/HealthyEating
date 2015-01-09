@@ -1,0 +1,1 @@
+<resources><string name="app_name">healthy_eating</string><string-array name="lifestyles"><item>Подвижный</item><item>Малоподвижный</item><item>Активный</item></string-array><string-array name="allergic"><item>Отсутствуют</item><item>Молочные</item><item>Шоколад</item><item>Арахис</item><item>Хлебобулочные</item><item>Ягоды</item></string-array></resources>

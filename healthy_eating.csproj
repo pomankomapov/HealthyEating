@@ -16,6 +16,8 @@
     <AssemblyName>healthy_eating</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,17 +76,20 @@
     <AndroidResource Include="Resources\drawable\add.png" />
     <AndroidResource Include="Resources\drawable\arrow.png" />
     <AndroidResource Include="Resources\drawable\cancel.png" />
+    <AndroidResource Include="Resources\drawable\default_button.xml" />
     <AndroidResource Include="Resources\drawable\food.png" />
+    <AndroidResource Include="Resources\drawable\healthy_eating.png" />
     <AndroidResource Include="Resources\drawable\home.png" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\drawable\ok.png" />
+    <AndroidResource Include="Resources\drawable\options.png" />
     <AndroidResource Include="Resources\drawable\profile.png" />
     <AndroidResource Include="Resources\drawable\search.png" />
+    <AndroidResource Include="Resources\drawable\stats.png" />
     <AndroidResource Include="Resources\drawable\time.png" />
     <AndroidResource Include="Resources\drawable\training.png" />
     <AndroidResource Include="Resources\drawable\water.png" />
     <AndroidResource Include="Resources\drawable\wei.png" />
-    <AndroidResource Include="Resources\drawable\healthy_eating.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

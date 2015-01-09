@@ -18,6 +18,7 @@ namespace healthy_eating
         static int profileID = int.MaxValue;     // ID профиля пользователя
         protected ImageButton btn_profile;       // Кнопка профиля
         protected ImageButton btn_options;       // Кнопка настроек
+        protected ImageButton btn_food;          // Кнопка пищи
       
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -31,6 +32,7 @@ namespace healthy_eating
 
             btn_profile = FindViewById<ImageButton>(Resource.Id.button_profile);
             btn_options = FindViewById<ImageButton>(Resource.Id.button_options);
+            btn_food = FindViewById<ImageButton>(Resource.Id.button_food);
 
 			// Назначаем действия /////////////////////////////////////////////////
 
@@ -43,6 +45,10 @@ namespace healthy_eating
 			{
                 StartActivity(typeof(DataBaseActivity));
 			};
+
+            btn_food.Click += (sender, e) => {
+                StartActivity(typeof(FoodActivity));
+            };
 
 			// Задачи во время запуска активности /////////////////////////////////
 
