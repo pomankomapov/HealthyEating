@@ -27,6 +27,8 @@ namespace healthy_eating
         protected SeekBar      skb_target_weight; // Прокрутка целевого веса
         protected Spinner      spn_lifestyle;     // Образ жизни
         protected Spinner      spn_allergic;      // Группы аллегренных продуктов
+        protected Button       btn_choose;        // Выбрать аллергенный продукт
+        protected Button       btn_delete;        // Удалить продукт из списка аллергенных
         protected Button       btn_apply;         // Кнопка применения
         protected Button       btn_cancel;        // Кнопка отмены
 
@@ -54,6 +56,8 @@ namespace healthy_eating
             skb_target_weight = FindViewById <SeekBar>     (Resource.Id.seekbar_target_weight);
             spn_lifestyle     = FindViewById <Spinner>     (Resource.Id.spinner_lifestyle);
             spn_allergic      = FindViewById <Spinner>     (Resource.Id.spinner_allergic);
+            btn_choose        = FindViewById <Button>      (Resource.Id.button_choose_food);
+            btn_delete        = FindViewById <Button>      (Resource.Id.button_delete);
             btn_apply         = FindViewById <Button>      (Resource.Id.button_apply);
             btn_cancel        = FindViewById <Button>      (Resource.Id.button_cancel);
 
@@ -127,14 +131,50 @@ namespace healthy_eating
             spn_lifestyle.Adapter = adapter;
 
             // Аллергенные продукты
+            /*
             spn_allergic.ItemSelected += (sender, e) => {
+                if (userClick) // Ahhahhahaa!!! Caught!
+                {
+                    Spinner spinner = (Spinner)sender;
+                    string name = (string)spinner.GetItemAtPosition (e.Position);
+                    Food food = database.findFood(name);
+
+                    // Если аллергенные продукты существуют для данного пользователя
+                    if (database.getAllergic(Global.userID) != null)
+                    {
+                        // Найден продукт
+                        if (food != null)
+                        {
+                            database.delAllergic(food.ID);
+                            update_allergic();
+                        }
+                    }
+                }
+                userClick = true; // You make me!
+            };
+            */
+
+            btn_choose.Click += (sender, e) => {
+                var activity = new Intent (this, typeof(ListFood));
+                activity.PutExtra("mode", "Allergic");
+                StartActivity(activity);
             };
 
-            adapter = ArrayAdapter.CreateFromResource (this, Resource.Array.allergic, 
-                Android.Resource.Layout.SimpleSpinnerItem);
+            btn_delete.Click += (sender, e) => {
+                // Если аллергенные продукты существуют для данного пользователя
+                if (database.getAllergic(Global.userID) != null)
+                {
+                    string name = spn_allergic.SelectedItem.ToString();
+                    Food food = database.findFood(name);
 
-            adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spn_allergic.Adapter = adapter;
+                    // Найден продукт
+                    if (food != null)
+                    {
+                        database.delAllergic(Global.userID, food.ID);
+                        update_allergic();
+                    }
+                }
+            };
 
             // Кнопки применения и отмены
             btn_apply.Click += (sender, e) => {
@@ -174,7 +214,20 @@ namespace healthy_eating
                 edt_target_weight.Text = string.Format("{0}", profile.desired_weight);
                 skb_weight.Progress = profile.current_weight;
                 skb_target_weight.Progress = profile.desired_weight;
+
+                update_allergic();
             }
+        }
+
+        protected void update_allergic()
+        {
+            // Добываем список аллергенных продуктов
+            List<string> allergics = database.getAllAllergicNames(Global.userID);
+
+            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, allergics);
+            adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spn_allergic.Adapter = adapter;
+            spn_allergic.Selected = false;
         }
 
         protected bool save_data()

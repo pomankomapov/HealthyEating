@@ -14,11 +14,15 @@ namespace healthy_eating
     public class ListFood : ListActivity
     {
         static HEDB database = new HEDB();
-        List<string> items = new List<string>();
+        protected List<string> items = new List<string>();
+        protected string mode;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            // Получаем информацию от вызывающего
+            mode = Intent.GetStringExtra("mode") ?? "none";
 
             List<Food> foods = database.getAllFood();
 
@@ -40,6 +44,17 @@ namespace healthy_eating
             // Сохраняем выбор пользователя
             if (food != null)
                 Global.choosed_food_ID = food.ID;
+
+            // Если выбор аллергенного продукта
+            if (mode.Equals("Allergic"))
+            {
+                if (Global.choosed_food_ID != int.MaxValue)
+                {
+                    // Выбран аллергенный продукт
+                    //  добавляем в базу
+                    database.addAllergic(Global.userID, Global.choosed_food_ID);
+                }
+            }
 
             // Возвращаемся к предыдущему активити
             base.OnBackPressed();

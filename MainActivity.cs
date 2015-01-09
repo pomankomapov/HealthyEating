@@ -52,6 +52,7 @@ namespace healthy_eating
 
             HEDB database = new HEDB();
             //database.delAll(); // Временно
+            database.delAllAllergic();
 
             profileID = find_main_profile();
             if (profileID == int.MaxValue) // Профиля нет

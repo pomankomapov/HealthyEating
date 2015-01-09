@@ -118,11 +118,14 @@ namespace healthy_eating
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060037
-			public const int button_apply = 2131099703;
+			// aapt resource value: 0x7f06003a
+			public const int button_apply = 2131099706;
 			
-			// aapt resource value: 0x7f060038
-			public const int button_cancel = 2131099704;
+			// aapt resource value: 0x7f06003b
+			public const int button_cancel = 2131099707;
+			
+			// aapt resource value: 0x7f06002e
+			public const int button_choose_food = 2131099694;
 			
 			// aapt resource value: 0x7f060020
 			public const int button_db_options = 2131099680;
@@ -132,6 +135,9 @@ namespace healthy_eating
 			
 			// aapt resource value: 0x7f060013
 			public const int button_db_select = 2131099667;
+			
+			// aapt resource value: 0x7f06002f
+			public const int button_delete = 2131099695;
 			
 			// aapt resource value: 0x7f06001e
 			public const int button_options = 2131099678;
@@ -154,17 +160,17 @@ namespace healthy_eating
 			// aapt resource value: 0x7f060008
 			public const int editText_db_proteins = 2131099656;
 			
-			// aapt resource value: 0x7f060029
-			public const int edit_length = 2131099689;
+			// aapt resource value: 0x7f060031
+			public const int edit_length = 2131099697;
 			
 			// aapt resource value: 0x7f060022
 			public const int edit_name = 2131099682;
 			
-			// aapt resource value: 0x7f06002f
-			public const int edit_target_weight = 2131099695;
+			// aapt resource value: 0x7f060037
+			public const int edit_target_weight = 2131099703;
 			
-			// aapt resource value: 0x7f06002c
-			public const int edit_weight = 2131099692;
+			// aapt resource value: 0x7f060034
+			public const int edit_weight = 2131099700;
 			
 			// aapt resource value: 0x7f060019
 			public const int imageButton1 = 2131099673;
@@ -190,17 +196,20 @@ namespace healthy_eating
 			// aapt resource value: 0x7f06001d
 			public const int linearLayout3 = 2131099677;
 			
-			// aapt resource value: 0x7f060031
-			public const int linearLayout4 = 2131099697;
+			// aapt resource value: 0x7f060028
+			public const int linearLayout4 = 2131099688;
 			
-			// aapt resource value: 0x7f060027
-			public const int linearLayout5 = 2131099687;
-			
-			// aapt resource value: 0x7f060036
-			public const int linearLayout6 = 2131099702;
+			// aapt resource value: 0x7f06002b
+			public const int linearLayout5 = 2131099691;
 			
 			// aapt resource value: 0x7f060039
-			public const int linear_buttons = 2131099705;
+			public const int linearLayout6 = 2131099705;
+			
+			// aapt resource value: 0x7f06002d
+			public const int linearLayout7 = 2131099693;
+			
+			// aapt resource value: 0x7f06003c
+			public const int linear_buttons = 2131099708;
 			
 			// aapt resource value: 0x7f060017
 			public const int listView_food = 2131099671;
@@ -223,35 +232,35 @@ namespace healthy_eating
 			// aapt resource value: 0x7f060000
 			public const int scrollView1 = 2131099648;
 			
-			// aapt resource value: 0x7f06002a
-			public const int seekbar_length = 2131099690;
+			// aapt resource value: 0x7f060032
+			public const int seekbar_length = 2131099698;
 			
-			// aapt resource value: 0x7f060030
-			public const int seekbar_target_weight = 2131099696;
-			
-			// aapt resource value: 0x7f06002d
-			public const int seekbar_weight = 2131099693;
+			// aapt resource value: 0x7f060038
+			public const int seekbar_target_weight = 2131099704;
 			
 			// aapt resource value: 0x7f060035
-			public const int spinner_allergic = 2131099701;
+			public const int seekbar_weight = 2131099701;
 			
-			// aapt resource value: 0x7f060033
-			public const int spinner_lifestyle = 2131099699;
+			// aapt resource value: 0x7f06002c
+			public const int spinner_allergic = 2131099692;
 			
-			// aapt resource value: 0x7f06003c
-			public const int stat_calories = 2131099708;
+			// aapt resource value: 0x7f060029
+			public const int spinner_lifestyle = 2131099689;
 			
-			// aapt resource value: 0x7f06003e
-			public const int stat_pfc = 2131099710;
+			// aapt resource value: 0x7f06003f
+			public const int stat_calories = 2131099711;
+			
+			// aapt resource value: 0x7f060041
+			public const int stat_pfc = 2131099713;
+			
+			// aapt resource value: 0x7f060046
+			public const int stat_training = 2131099718;
 			
 			// aapt resource value: 0x7f060043
-			public const int stat_training = 2131099715;
+			public const int stat_water = 2131099715;
 			
-			// aapt resource value: 0x7f060040
-			public const int stat_water = 2131099712;
-			
-			// aapt resource value: 0x7f06003a
-			public const int stat_weight = 2131099706;
+			// aapt resource value: 0x7f06003d
+			public const int stat_weight = 2131099709;
 			
 			// aapt resource value: 0x7f060002
 			public const int tableLayout1 = 2131099650;
@@ -292,38 +301,38 @@ namespace healthy_eating
 			// aapt resource value: 0x7f060010
 			public const int textView20 = 2131099664;
 			
-			// aapt resource value: 0x7f060028
-			public const int textView3 = 2131099688;
+			// aapt resource value: 0x7f060030
+			public const int textView3 = 2131099696;
 			
-			// aapt resource value: 0x7f06002b
-			public const int textView4 = 2131099691;
+			// aapt resource value: 0x7f060033
+			public const int textView4 = 2131099699;
 			
-			// aapt resource value: 0x7f06002e
-			public const int textView5 = 2131099694;
+			// aapt resource value: 0x7f060036
+			public const int textView5 = 2131099702;
 			
-			// aapt resource value: 0x7f060032
-			public const int textView6 = 2131099698;
+			// aapt resource value: 0x7f060027
+			public const int textView6 = 2131099687;
 			
-			// aapt resource value: 0x7f060034
-			public const int textView7 = 2131099700;
-			
-			// aapt resource value: 0x7f060041
-			public const int textView9 = 2131099713;
-			
-			// aapt resource value: 0x7f06003d
-			public const int text_stat_calories = 2131099709;
-			
-			// aapt resource value: 0x7f06003f
-			public const int text_stat_pfc = 2131099711;
+			// aapt resource value: 0x7f06002a
+			public const int textView7 = 2131099690;
 			
 			// aapt resource value: 0x7f060044
-			public const int text_stat_training = 2131099716;
+			public const int textView9 = 2131099716;
+			
+			// aapt resource value: 0x7f060040
+			public const int text_stat_calories = 2131099712;
 			
 			// aapt resource value: 0x7f060042
-			public const int text_stat_water = 2131099714;
+			public const int text_stat_pfc = 2131099714;
 			
-			// aapt resource value: 0x7f06003b
-			public const int text_stat_weight = 2131099707;
+			// aapt resource value: 0x7f060047
+			public const int text_stat_training = 2131099719;
+			
+			// aapt resource value: 0x7f060045
+			public const int text_stat_water = 2131099717;
+			
+			// aapt resource value: 0x7f06003e
+			public const int text_stat_weight = 2131099710;
 			
 			static Id()
 			{

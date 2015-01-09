@@ -5,7 +5,11 @@
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
     p1:id="@+id/scrollView1"
-    p1:background="#ffffffff">
+    p1:background="#ffffffff"
+    p1:paddingTop="10dp"
+    p1:paddingRight="10dp"
+    p1:paddingBottom="10dp"
+    p1:paddingLeft="10dp">
     <RelativeLayout
         p1:minWidth="25px"
         p1:minHeight="25px"
@@ -59,13 +63,77 @@
                 p1:textColor="#ff000000" />
         </RadioGroup>
         <TextView
+            p1:text="Образ жизни:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:id="@+id/textView6"
+            p1:textColor="#ff000000"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/radioGroup1" />
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView6"
+            p1:id="@+id/linearLayout4"
+            p1:gravity="center_vertical">
+            <Spinner
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/spinner_lifestyle"
+                p1:layout_gravity="center_vertical" />
+        </LinearLayout>
+        <TextView
+            p1:text="Аллергенные продукты:"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:id="@+id/textView7"
+            p1:textColor="#ff000000"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/linearLayout4" />
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/textView7"
+            p1:id="@+id/linearLayout5"
+            p1:gravity="center_vertical">
+            <Spinner
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/spinner_allergic" />
+        </LinearLayout>
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/linearLayout7"
+            p1:layout_below="@+id/linearLayout5">
+            <Button
+                p1:text="Добавить продукт"
+                p1:id="@+id/button_choose_food"
+                p1:layout_width="wrap_content"
+                p1:layout_height="match_parent" />
+            <Button
+                p1:text="Удалить"
+                p1:layout_width="wrap_content"
+                p1:layout_height="match_parent"
+                p1:id="@+id/button_delete" />
+        </LinearLayout>
+        <TextView
             p1:text="Рост:"
             p1:textAppearance="?android:attr/textAppearanceMedium"
             p1:layout_width="wrap_content"
             p1:layout_height="wrap_content"
-            p1:layout_below="@+id/linearLayout5"
             p1:id="@+id/textView3"
-            p1:textColor="#ff000000" />
+            p1:textColor="#ff000000"
+            p1:layout_below="@+id/linearLayout7" />
         <LinearLayout
             p1:orientation="horizontal"
             p1:minWidth="25px"
@@ -87,7 +155,6 @@
                 p1:layout_height="wrap_content"
                 p1:id="@+id/seekbar_length"
                 p1:max="250"
-                p1:layout_marginRight="10dp"
                 p1:progress="170"
                 p1:scrollbars="vertical" />
         </LinearLayout>
@@ -120,8 +187,7 @@
                 p1:layout_height="wrap_content"
                 p1:id="@+id/seekbar_weight"
                 p1:progress="60"
-                p1:max="120"
-                p1:layout_marginRight="10dp" />
+                p1:max="120" />
         </LinearLayout>
         <TextView
             p1:text="Целевой вес:"
@@ -151,55 +217,8 @@
                 p1:layout_width="match_parent"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/seekbar_target_weight"
-                p1:layout_marginRight="10dp"
                 p1:max="120"
                 p1:progress="55" />
-        </LinearLayout>
-        <LinearLayout
-            p1:orientation="horizontal"
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:layout_below="@+id/radioGroup1"
-            p1:id="@+id/linearLayout4"
-            p1:gravity="center_vertical">
-            <TextView
-                p1:text="Образ жизни:"
-                p1:textAppearance="?android:attr/textAppearanceMedium"
-                p1:id="@+id/textView6"
-                p1:textColor="#ff000000"
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content" />
-            <Spinner
-                p1:layout_width="match_parent"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/spinner_lifestyle"
-                p1:layout_marginRight="10dp"
-                p1:layout_gravity="center_vertical" />
-        </LinearLayout>
-        <LinearLayout
-            p1:orientation="horizontal"
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:layout_below="@id/linearLayout4"
-            p1:id="@+id/linearLayout5"
-            p1:gravity="center_vertical">
-            <TextView
-                p1:text="Аллергенные:"
-                p1:textAppearance="?android:attr/textAppearanceMedium"
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/textView7"
-                p1:textColor="#ff000000" />
-            <Spinner
-                p1:layout_width="match_parent"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/spinner_allergic"
-                p1:layout_marginRight="10dp"
-                p1:layout_gravity="center_vertical" />
         </LinearLayout>
         <LinearLayout
             p1:orientation="horizontal"

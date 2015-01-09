@@ -24,6 +24,7 @@ namespace healthy_eating
             hedb.CreateTable<Profile>();     // Создаем таблицу профилей
             hedb.CreateTable<Profession>();  // Создаем таблицу профессий
             hedb.CreateTable<Lifestyle>();   // Создаем таблицу образов жизни
+            hedb.CreateTable<Allergic>();    // Создаем таблицу аллергенных продуктов
             hedb.CreateTable<Food>();        // Создаем таблицу продуктов
             hedb.CreateTable<FoodPortion>(); // Создаем таблицу продукт-порция
             hedb.CreateTable<Eating>();      // Создаем таблицу приём пищи
@@ -38,6 +39,7 @@ namespace healthy_eating
             hedb.DeleteAll<Profile>();
             hedb.DeleteAll<Profession>();
             hedb.DeleteAll<Lifestyle>();
+            hedb.DeleteAll<Allergic>();
             hedb.DeleteAll<Food>();
             hedb.DeleteAll<FoodPortion>();
             hedb.DeleteAll<Eating>();
@@ -122,7 +124,7 @@ namespace healthy_eating
 		public Profession addProfession(Profile _profile, string _name) {
 			// Добавляем новый профиль
 			var _profession = new Profession {
-				ProfileID = _profile.ID,
+				profileID = _profile.ID,
 				name = _name		
 			};
 			hedb.Insert (_profession);
@@ -181,6 +183,92 @@ namespace healthy_eating
             return hedb.DeleteAll<Lifestyle> ();
         }
 
+        // Методы для сущности "Аллергенные продукты" /////////////////////////////////////////////////////////
+
+        public Allergic addAllergic(int _profileID, int _foodID)
+        {
+            var _allergic = new Allergic {
+                profileID = _profileID,
+                foodID = _foodID
+            };
+            hedb.Insert (_allergic);
+            return _allergic;
+        }
+
+        public Allergic getAllergic(int profileID)
+        {
+            Allergic result;
+            try
+            {
+                var query = hedb.Table<Allergic>().Where(x => x.profileID == profileID);
+                result = query.First();
+            }
+            catch
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
+        public Allergic findAllergic(int profileID, string name)
+        {
+            name = name.Trim();
+
+            Food food = findFood(name);
+            if (food == null)
+                return null;
+
+            Allergic result;
+            try
+            {
+                var query = hedb.Table<Allergic>().Where(x => x.foodID == food.ID).Where(x => x.profileID == profileID);
+                result = query.First();
+            }
+            catch
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Получить названия всех аллергенных продуктов пользователя
+        /// </summary>
+        /// <returns>The all allergic.</returns>
+        /// <param name="profileID">Profile I.</param>
+        public List<string> getAllAllergicNames(int profileID)
+        {
+            var table = hedb.Table<Allergic>().Where(x => x.profileID == profileID);
+            List<string> foods = new List<string>();
+            foreach (var item in table)
+            {
+                Food food = getFood(item.foodID);
+                foods.Add(food.name);
+            }
+
+            if (foods.Count < 1)
+            {
+                foods.Add("Отсутствуют");
+            }
+
+            return foods;
+        }
+
+        public void delAllergic(int profileID, int foodID) {
+            var query = hedb.Table<Allergic>().Where(x => x.foodID == foodID).Where(x => x.profileID == profileID);
+
+            foreach (var item in query)
+            {
+                hedb.Delete<Allergic>(item.ID);
+            }
+        }
+
+        public int delAllAllergic() {
+            return hedb.DeleteAll<Allergic> ();
+        }
+
         // Методы для сущности "Продукты" /////////////////////////////////////////////////////////////////////
 
         /// <summary>
@@ -204,7 +292,7 @@ namespace healthy_eating
                  fats      = _fats, 
                  carbs     = _carbs,
                  calories  = _calories, 
-                 ProfileID = _ProfileID
+                 profileID = _ProfileID
             };
             hedb.Insert (_food);
             return _food;
@@ -233,7 +321,7 @@ namespace healthy_eating
             Food result;
             try
             {
-                var query = hedb.Table<Food>().Where(x => x.name == name);
+                var query = hedb.Table<Food>().Where(x => name.Equals(x.name));
                 result = query.First();
             }
             catch
@@ -291,7 +379,7 @@ namespace healthy_eating
 	public class Profession
 	{
 		[PrimaryKey]
-		public int ProfileID { get; set; }
+		public int profileID { get; set; }
 		public string name { get; set; }
 	}
 
@@ -306,6 +394,17 @@ namespace healthy_eating
     }
 
     /// <summary>
+    /// Аллергенный продукт
+    /// </summary>
+    public class Allergic
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public int profileID { get; set; }
+        public int foodID { get; set; }
+    }
+
+    /// <summary>
     /// Продукт питания
     /// </summary>
     public class Food
@@ -317,7 +416,7 @@ namespace healthy_eating
         public int fats { get; set; }
         public int carbs { get; set; } // Сокращение от carbohydrates (используется в языке)
         public int calories { get; set; }
-        public int ProfileID { get; set; }
+        public int profileID { get; set; }
     }
 
     /// <summary>
@@ -326,7 +425,7 @@ namespace healthy_eating
     public class FoodPortion
     {
         [PrimaryKey]
-        public int FoodID { get; set; }
+        public int foodID { get; set; }
         public int count { get; set; } 
     }
 
@@ -336,7 +435,7 @@ namespace healthy_eating
     public class Eating
     {
         [PrimaryKey]
-        public int FoodPortionID { get; set; }
+        public int foodPortionID { get; set; }
         public bool eaten { get; set; } 
         public DateTime time { get; set; }
     }
@@ -347,7 +446,7 @@ namespace healthy_eating
     public class EatingTemplate
     {
         [PrimaryKey]
-        public List<int> FoodPortionID { get; set; } // TODO: проверь работает ли
+        public List<int> foodPortionID { get; set; } // TODO: проверь работает ли
     }
 
     // Ещё таблички "План питания" и "День питаний"
