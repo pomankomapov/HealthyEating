@@ -7,9 +7,12 @@ namespace healthy_eating
     // Healthy Eating DataBase
 	public class HEDB
 	{
+		// Коннектор к базе
 		private SQLiteConnection hedb;
 
-        // Блок инициализации /////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
+		//            Блок инициализации   ////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
 
 		public HEDB ()
 		{
@@ -45,7 +48,18 @@ namespace healthy_eating
             hedb.DeleteAll<Eating>();
         }
 
-        // Методы для сущности "Профиль" ///////////////////////////////////////////////////////////////////////
+
+
+
+
+		/*#######################################################################*/
+		/*########################		 МЕТОДЫ       ###########################*/
+		/*#######################################################################*/
+
+
+		///////////////////////////////////////////////////////////////////////////
+		//				 "Профиль"   //////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
 
 		/// <summary>
 		/// Добавляет новый "профиль пользователя" в базу.
@@ -116,7 +130,11 @@ namespace healthy_eating
 			return hedb.DeleteAll<Profile> ();
 		}
 
-        // Методы для сущности "Профессия" ////////////////////////////////////////////////////////////////////////
+
+
+		///////////////////////////////////////////////////////////////////////////
+		//					 "Профессия"   ////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
 
 		/// <summary>
 		/// Добавляет новую "профессию" в базу по заданному "профилю"(Profile).
@@ -147,7 +165,11 @@ namespace healthy_eating
 			return hedb.DeleteAll<Profession> ();
 		}
 
-        // Методы для сущности "Образ жизни" ///////////////////////////////////////////////////////////////////////
+
+
+		///////////////////////////////////////////////////////////////////////////
+		// 					   "Образ жизни" //////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Adds the lifestyle.
@@ -183,7 +205,11 @@ namespace healthy_eating
             return hedb.DeleteAll<Lifestyle> ();
         }
 
-        // Методы для сущности "Аллергенные продукты" /////////////////////////////////////////////////////////
+
+
+		///////////////////////////////////////////////////////////////////////////
+		//                     "Аллергенные продукты" /////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
 
         public Allergic addAllergic(int _profileID, int _foodID)
         {
@@ -269,7 +295,11 @@ namespace healthy_eating
             return hedb.DeleteAll<Allergic> ();
         }
 
-        // Методы для сущности "Продукты" /////////////////////////////////////////////////////////////////////
+
+
+		///////////////////////////////////////////////////////////////////////////
+		//                     "Продукты" /////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Добавляет продукт в базу. Принудительно понижает регистр!
@@ -351,9 +381,227 @@ namespace healthy_eating
             return hedb.DeleteAll<Food> ();
         }
 
+
+
+		////////////////////////////////////////////////////////////////////////////
+		//                     "Продукт-порции" ////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>
+		/// Добавляет продукт-порцию в базу.
+		/// </summary>
+		/// <returns>FoodPortion</returns>
+		/// <param name="_foodID">ID продукта</param>
+		/// <param name="_count">количество</param>
+		public FoodPortion addFoodPortion(int _foodID, int _count)
+		{
+			if (_foodID < 0 && _count < 0) {
+				return null;
+			}
+
+			// Добавляем новую продукт-порцию
+			var _foodPortion = new FoodPortion {
+				foodID = _foodID, 
+				count  = _count
+			};
+
+			hedb.Insert (_foodPortion);
+			return _foodPortion;
+		}
+
+		public FoodPortion getFoodPortion(int ID)
+		{
+			FoodPortion result;
+			try
+			{
+				var query = hedb.Table<FoodPortion>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<FoodPortion> getAllFoodPortion()
+		{
+			var table = hedb.Table<FoodPortion>();
+			List<FoodPortion> foodPortions = new List<FoodPortion>();
+			foreach (var item in table)
+			{
+				foodPortions.Add(item);
+			}
+			return foodPortions;
+		}
+
+		public int delFoodPortion(int ID) {
+			return hedb.Delete<FoodPortion> (ID);
+		}
+
+		public int delAllFoodPortion() {
+			return hedb.DeleteAll<FoodPortion> ();
+		}
+
+
+
+		////////////////////////////////////////////////////////////////////////////
+		//                     "Приемы пищи"    ////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>
+		/// Добавление.
+		/// </summary>
+		/// <returns>Eating</returns>
+		/// <param name="_time">Время приема пищи</param>
+		/// <param name="_eated">Съеден</param>
+
+		public Eating addEating(DateTime _time, int _eaten = false)
+		{
+			// Добавляем новый прием пищи
+			var _eating = new Eating {
+				time = _time,
+				eaten  = _eaten
+			};
+
+			hedb.Insert (_eating);
+			return _eating;
+		}
+
+		public Eating getEating(int ID)
+		{
+			Eating result;
+			try
+			{
+				var query = hedb.Table<Eating>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<Eating> getAllEating()
+		{
+			var table = hedb.Table<Eating>();
+			List<Eating> eatings = new List<Eating>();
+			foreach (var item in table)
+			{
+				eatings.Add(item);
+			}
+			return eatings;
+		}
+
+		public int delEating(int ID) {
+			return hedb.Delete<Eating> (ID);
+		}
+
+		public int delAllEating() {
+			return hedb.DeleteAll<Eating> ();
+		}
+
+
+
+		////////////////////////////////////////////////////////////////////////////
+		//           "Cписок продукт-порций"    ////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>
+		/// Добавление.
+		/// </summary>
+		/// <returns>FoodPortionList</returns>
+		/// <param name="_portionID">ID проодукт-порции</param>
+		/// <param name="_eatingID">ID приема пищи</param>
+		public FoodPortionList addFoodPortionList(int _portionID, int _eatingID)
+		{
+			if (_portionID < 0 && _eatingID < 0) {
+				return null;
+			}
+
+			// Добавляем новый прием пищи
+			var _foodPortionList = new FoodPortionList {
+				portionID = _portionID,
+				eatingID  = _eatingID,
+				eatingTemplateID = null
+			};
+
+			hedb.Insert (_foodPortionList);
+			return _foodPortionList;
+		}
+
+		/// <summary>
+		/// Добавление.
+		/// </summary>
+		/// <returns>FoodPortionList</returns>
+		/// <param name="_portionID">ID проодукт-порции</param>
+		/// <param name="_eatingTemplateID">ID шаблона приема пищи</param>
+		public FoodPortionList addFoodPortionList(int _portionID, int _eatingTemplateID)
+		{
+			if (_portionID < 0 && _eatingTemplateID < 0) {
+				return null;
+			}
+
+			// Добавляем новый прием пищи
+			var _foodPortionList = new FoodPortionList {
+				portionID = _portionID,
+				eatingID  = null,
+				eatingTemplateID = _eatingTemplateID
+			};
+
+			hedb.Insert (_foodPortionList);
+			return _foodPortionList;
+		}
+
+		public FoodPortionList getFoodPortionList(int ID)
+		{
+			FoodPortionList result;
+			try
+			{
+				var query = hedb.Table<FoodPortionList>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<FoodPortionList> getAllFoodPortionList()
+		{
+			var table = hedb.Table<FoodPortionList>();
+			List<FoodPortionList> foodPortionLists = new List<FoodPortionList>();
+			foreach (var item in table)
+			{
+				foodPortionLists.Add(item);
+			}
+			return foodPortionLists;
+		}
+
+		public int delFoodPortionList(int ID) {
+			return hedb.Delete<FoodPortionList> (ID);
+		}
+
+		public int delAllFoodPortionList() {
+			return hedb.DeleteAll<FoodPortionList> ();
+		}
+
+		//Нужно также удаление и поиск по ID проодукт-порции, ID приема пищи и ID шаблона приема пищи
+
 	}
 
-    // Сущности ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+	/*#######################################################################*/
+	/*########################		 Сущности     ###########################*/
+	/*#######################################################################*/
 
 	/// <summary>
 	/// Профиль пользователя
@@ -424,20 +672,33 @@ namespace healthy_eating
     /// </summary>
     public class FoodPortion
     {
-        [PrimaryKey]
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
         public int foodID { get; set; }
         public int count { get; set; } 
     }
+
+	/// <summary>
+	/// Лист продукт-порций для приема пищи и шаблонов приема пищи.
+	/// </summary>
+	public class FoodPortionList
+	{
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
+		public int portionID { get; set; }
+		public int eatingID { get; set; } //Если для приема пищи ( тогда eatingTemplateID пуст )
+		public int eatingTemplateID { get; set; } //Если для шаблона приема пищи ( тогда eatingID пуст )
+	}
 
     /// <summary>
     /// Приём пищи
     /// </summary>
     public class Eating
     {
-        [PrimaryKey]
-        public int foodPortionID { get; set; }
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
         public bool eaten { get; set; } 
-        public DateTime time { get; set; }
+		public DateTime time { get; set; }
     }
 
     /// <summary>
@@ -445,11 +706,40 @@ namespace healthy_eating
     /// </summary>
     public class EatingTemplate
     {
-        [PrimaryKey]
-        public List<int> foodPortionID { get; set; } // TODO: проверь работает ли
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
     }
 
-    // Ещё таблички "План питания" и "День питаний"
+	/// <summary>
+	/// План питания
+	/// </summary>
+	public class MealPlane
+	{
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
+	}
 
+	/// <summary>
+	/// Список приемов пищи для плана питания
+	/// </summary>
+	public class EatingList
+	{
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
+		public int mealPlaneID { get; set; }
+		public int eatingID { get; set; }
+	}
+
+	/// <summary>
+	/// День питания
+	/// </summary>
+	public class EatingDay
+	{
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
+		public int mealPlaneID { get; set; }
+		public int allCalories { get; set; }
+		public DateTime eatingDate { get; set; }
+	}
 }
 
