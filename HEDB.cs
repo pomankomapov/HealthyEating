@@ -507,6 +507,205 @@ namespace healthy_eating
 
 
 		////////////////////////////////////////////////////////////////////////////
+		//            "Шаблоны приемов пищи"    ////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>
+		/// Добавление.
+		/// </summary>
+		/// <returns>EatingTemplate</returns>
+
+		public EatingTemplate addEatingTemplate()
+		{
+			// Добавляем новый шаблон
+			var _eating = new EatingTemplate{};
+			hedb.Insert (_eating);
+			return _eating;
+		}
+
+		public EatingTemplate getEatingTemplate(int ID)
+		{
+			EatingTemplate result;
+			try
+			{
+				var query = hedb.Table<EatingTemplate>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<EatingTemplate> getAllEatingTemplate()
+		{
+			var table = hedb.Table<EatingTemplate>();
+			List<EatingTemplate> eatings = new List<EatingTemplate>();
+			foreach (var item in table)
+			{
+				eatings.Add(item);
+			}
+			return eatings;
+		}
+
+		public int delEatingTemplate(int ID) {
+			return hedb.Delete<EatingTemplate> (ID);
+		}
+
+		public int delAllEatingTemplate() {
+			return hedb.DeleteAll<EatingTemplate> ();
+		}
+
+
+
+		////////////////////////////////////////////////////////////////////////////
+		//                   "Планы питания"    ////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>
+		/// Добавление.
+		/// </summary>
+		/// <returns>MealPlane</returns>
+		public MealPlane addMealPlane()
+		{
+			// Добавляем новый шаблон
+			var _eating = new MealPlane{};
+			hedb.Insert (_eating);
+			return _eating;
+		}
+
+		public MealPlane getMealPlane(int ID)
+		{
+			MealPlane result;
+			try
+			{
+				var query = hedb.Table<MealPlane>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<MealPlane> getAllMealPlane()
+		{
+			var table = hedb.Table<MealPlane>();
+			List<MealPlane> eatings = new List<MealPlane>();
+			foreach (var item in table)
+			{
+				eatings.Add(item);
+			}
+			return eatings;
+		}
+
+		public int delMealPlane(int ID) {
+			return hedb.Delete<MealPlane> (ID);
+		}
+
+		public int delAllMealPlane() {
+			return hedb.DeleteAll<MealPlane> ();
+		}
+
+
+
+		////////////////////////////////////////////////////////////////////////////
+		//             "Списки приемов пищи"    ////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		/// <summary>
+		/// Добавление.
+		/// </summary>
+		/// <returns>EatingList</returns>
+		/// <param name="_mealPlaneID">ID плана питания</param>
+		/// <param name="_eatingID">ID приема пищи</param>
+		public EatingList addEatingList(int _mealPlaneID, int _eatingID)
+		{
+			if (_mealPlaneID < 0 && _eatingID < 0) {
+				return null;
+			}
+
+			// Добавляем новый прием пищи
+			var _EatingList = new EatingList {
+				mealPlaneID = _mealPlaneID,
+				eatingID  = _eatingID
+			};
+
+			hedb.Insert (_EatingList);
+			return _EatingList;
+		}
+
+		public List<EatingList> getEatingList_by_MealPlaneID(int MealPlaneID)
+		{
+			List<EatingList> result;
+			try
+			{
+				var query = hedb.Table<EatingList>().Where(x => x.mealPlaneID == MealPlaneID);
+				foreach (var item in query)
+				{
+					result.Add(item);
+				}
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public EatingList getEatingList(int ID)
+		{
+			EatingList result;
+			try
+			{
+				var query = hedb.Table<EatingList>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<EatingList> getAllEatingList()
+		{
+			var table = hedb.Table<EatingList>();
+			List<EatingList> eatingList = new List<EatingList>();
+			foreach (var item in table)
+			{
+				eatingList.Add(item);
+			}
+			return eatingList;
+		}
+
+		public int delEatingList(int ID) {
+			return hedb.Delete<EatingList> (ID);
+		}
+
+		public int delEatingList_by_MealPlaneID(int MealPlaneID) {
+			var query = hedb.Table<EatingList>().Where(x => x.mealPlaneID == MealPlaneID);
+			int result = 0;
+			foreach (var item in query)
+			{
+				result += hedb.Delete<EatingList> (item.ID);
+			}
+			return result;
+		}
+
+		public int delAllEatingList() {
+			return hedb.DeleteAll<EatingList> ();
+		}
+
+
+
+		////////////////////////////////////////////////////////////////////////////
 		//           "Cписок продукт-порций"    ////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////
 
@@ -556,6 +755,44 @@ namespace healthy_eating
 			return _foodPortionList;
 		}
 
+		public List<FoodPortionList> getFoodPortionList_by_EatingID(int EatingID)
+		{
+			List<FoodPortionList> result;
+			try
+			{
+				var query = hedb.Table<FoodPortionList>().Where(x => x.eatingID == EatingID);
+				foreach (var item in query)
+				{
+					result.Add(item);
+				}
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public List<FoodPortionList> getFoodPortionList_by_EatingTemplateID(int EatingTemplateID)
+		{
+			List<FoodPortionList> result;
+			try
+			{
+				var query = hedb.Table<FoodPortionList>().Where(x => x.eatingTemplateID == EatingTemplateID);
+				foreach (var item in query)
+				{
+					result.Add(item);
+				}
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
 		public FoodPortionList getFoodPortionList(int ID)
 		{
 			FoodPortionList result;
@@ -587,12 +824,31 @@ namespace healthy_eating
 			return hedb.Delete<FoodPortionList> (ID);
 		}
 
+		public int delFoodPortionList_by_EatingID(int EatingID) {
+			var query = hedb.Table<FoodPortionList>().Where(x => x.eatingID == EatingID);
+			int result = 0;
+			foreach (var item in query)
+			{
+				result += hedb.Delete<FoodPortionList> (item.ID);
+			}
+			return result;
+		}
+
+		public int delFoodPortionList_by_EatingTemplateID(int EatingTemplateID) {
+			var query = hedb.Table<FoodPortionList>().Where(x => x.eatingTemplateID == EatingTemplateID);
+			int result = 0;
+			foreach (var item in query)
+			{
+				result += hedb.Delete<FoodPortionList> (item.ID);
+			}
+			return result;
+		}
+
 		public int delAllFoodPortionList() {
 			return hedb.DeleteAll<FoodPortionList> ();
 		}
 
-		//Нужно также удаление и поиск по ID проодукт-порции, ID приема пищи и ID шаблона приема пищи
-
+		/// Остался EatingDay + сделать добавление списков посредством списков.
 	}
 
 
