@@ -57,7 +57,7 @@ namespace healthy_eating
             Global.choosed_food_ID = int.MaxValue;
 
             HEDB database = new HEDB();
-            //database.delAll(); // Временно
+            database.delAll(); // Временно
             database.delAllAllergic();
 
             profileID = find_main_profile();
@@ -69,6 +69,21 @@ namespace healthy_eating
             database.addFood("Яблоко", 45, 0, 70, 100, 3);
             database.addFood("Абрикос", 45, 0, 70, 100, 3);
             database.addFood("Молоко", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос", 45, 0, 70, 100, 3);
+			database.addFood("Молоко", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос", 45, 0, 70, 100, 3);
+			database.addFood("Молоко", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос", 45, 0, 70, 100, 3);
+			database.addFood("Молоко", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос", 45, 0, 70, 100, 3);
+			database.addFood("Молоко", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос", 45, 0, 70, 100, 3);
+			database.addFood("Молоко", 45, 0, 70, 100, 3);
 		} 
 
 		/// <summary>

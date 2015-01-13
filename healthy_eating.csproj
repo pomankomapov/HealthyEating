@@ -90,6 +90,8 @@
     <AndroidResource Include="Resources\drawable\training.png" />
     <AndroidResource Include="Resources\drawable\water.png" />
     <AndroidResource Include="Resources\drawable\wei.png" />
+    <AndroidResource Include="Resources\layout\default_ListItem.xml" />
+    <AndroidResource Include="Resources\drawable\default_TextView.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

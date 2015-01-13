@@ -31,3 +31,5 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\water.p
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\wei.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\R.cs.flag
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\uploadflags.txt
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\default_listitem.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\default_textview.xml

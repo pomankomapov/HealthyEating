@@ -16,7 +16,8 @@ namespace healthy_eating
     [Activity(Label = "FoodActivity")]			
     public class FoodActivity : Activity
     {
-        protected ListView lsv_food;
+		static HEDB database = new HEDB();
+		protected ListView eatingList;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -27,8 +28,20 @@ namespace healthy_eating
             SetContentView (Resource.Layout.foodlist);
 
             // Получаем все контролы //////////////////////////////////////////////
+			eatingList = FindViewById<ListView> (Resource.Id.EatingList);
 
-            // Назначаем действия /////////////////////////////////////////////////
+            // Собираем View /////////////////////////////////////////////////
+
+			var foodList = database.getAllFood ();
+			int fl_count = foodList.Count ();
+			List<String> foodArray = new List<String>();
+
+			foreach(var item in foodList) {
+				foodArray.Add (item.name);
+			}
+
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Resource.Layout.default_ListItem, foodArray);
+			eatingList.Adapter = adapter;
 
             //lsv_food.Adapter = new AdapterView();
             //ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItemChecked, items);

@@ -457,7 +457,7 @@ namespace healthy_eating
 		/// <param name="_time">Время приема пищи</param>
 		/// <param name="_eated">Съеден</param>
 
-		public Eating addEating(DateTime _time, int _eaten = false)
+		public Eating addEating(DateTime _time, bool _eaten = false)
 		{
 			// Добавляем новый прием пищи
 			var _eating = new Eating {
@@ -663,7 +663,7 @@ namespace healthy_eating
 
 		public List<EatingList> getEatingList_by_MealPlaneID(int MealPlaneID)
 		{
-			List<EatingList> result;
+			List<EatingList> result = new List<EatingList>();
 			try
 			{
 				var query = hedb.Table<EatingList>().Where(x => x.mealPlaneID == MealPlaneID);
@@ -746,8 +746,7 @@ namespace healthy_eating
 			// Добавляем новый прием пищи
 			var _foodPortionList = new FoodPortionList {
 				portionID = _portionID,
-				eatingID  = _eating.ID,
-				eatingTemplateID = null
+				eatingID  = _eating.ID
 			};
 
 			hedb.Insert (_foodPortionList);
@@ -769,7 +768,6 @@ namespace healthy_eating
 			// Добавляем новый прием пищи
 			var _foodPortionList = new FoodPortionList {
 				portionID = _portionID,
-				eatingID  = null,
 				eatingTemplateID = _eatingTemplate.ID
 			};
 
@@ -790,8 +788,7 @@ namespace healthy_eating
 			foreach (var item in portions) {
 				var _foodPortionList = new FoodPortionList {
 					portionID = item.ID,
-					eatingID  = _eating.ID,
-					eatingTemplateID = null
+					eatingID  = _eating.ID
 				};
 				hedb.Insert (_foodPortionList);
 				PortionsList.Add (_foodPortionList);
@@ -813,8 +810,7 @@ namespace healthy_eating
 			foreach (var item in portions) {
 				var _foodPortionList = new FoodPortionList {
 					portionID = item.ID,
-					eatingID  = _eatingTemplate.ID,
-					eatingTemplateID = null
+					eatingID  = _eatingTemplate.ID
 				};
 				hedb.Insert (_foodPortionList);
 				PortionsList.Add (_foodPortionList);
@@ -826,7 +822,7 @@ namespace healthy_eating
 
 		public List<FoodPortionList> getFoodPortionList_by_EatingID(int EatingID)
 		{
-			List<FoodPortionList> result;
+			List<FoodPortionList> result = new List<FoodPortionList>();
 			try
 			{
 				var query = hedb.Table<FoodPortionList>().Where(x => x.eatingID == EatingID);
@@ -845,7 +841,7 @@ namespace healthy_eating
 
 		public List<FoodPortionList> getFoodPortionList_by_EatingTemplateID(int EatingTemplateID)
 		{
-			List<FoodPortionList> result;
+			List<FoodPortionList> result = new List<FoodPortionList>();
 			try
 			{
 				var query = hedb.Table<FoodPortionList>().Where(x => x.eatingTemplateID == EatingTemplateID);
