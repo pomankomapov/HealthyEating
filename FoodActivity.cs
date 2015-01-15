@@ -60,10 +60,10 @@ namespace healthy_eating
 			List<FoodPortion> fp_list2 = new List<FoodPortion> ();
 			List<FoodPortion> fp_list3 = new List<FoodPortion> ();
 			List<FoodPortion> fp_list4 = new List<FoodPortion> ();
-			var eating1 = database.addEating (new DateTime (2015, 1, 1, 12, 00, 00), false);
-			var eating2 = database.addEating (new DateTime (2015, 1, 1, 13, 00, 00), false);
-			var eating3 = database.addEating (new DateTime (2015, 1, 1, 15, 30, 00), false);
-			var eating4 = database.addEating (new DateTime (2015, 1, 1, 18, 00, 00), false);
+			var eating1 = database.addEating (new DateTime (2015, 1, 1, 12, 00, 00),  EatingType.breakfast, false);
+			var eating2 = database.addEating (new DateTime (2015, 1, 1, 13, 00, 00), EatingType.nosh, false);
+			var eating3 = database.addEating (new DateTime (2015, 1, 1, 15, 30, 00), EatingType.dinner, false);
+			var eating4 = database.addEating (new DateTime (2015, 1, 1, 18, 00, 00), EatingType.lunch, false);
 
 			var food1 = database.getFood ("Яблоко");
 			var food2 = database.getFood ("Абрикос");
@@ -84,10 +84,10 @@ namespace healthy_eating
 			database.addFoodPortionList (fp_list3, eating3);
 			database.addFoodPortionList (fp_list4, eating4);
 
-			database.addEatingList (eatingToday.mealPlaneID, EatingType.breakfast, eating1.ID);
-			database.addEatingList (eatingToday.mealPlaneID, EatingType.nosh, eating2.ID);
-			database.addEatingList (eatingToday.mealPlaneID, EatingType.dinner, eating3.ID);
-			database.addEatingList (eatingToday.mealPlaneID, EatingType.lunch, eating4.ID);
+			database.addEatingList (eatingToday.mealPlaneID, eating1.ID);
+			database.addEatingList (eatingToday.mealPlaneID, eating2.ID);
+			database.addEatingList (eatingToday.mealPlaneID, eating3.ID);
+			database.addEatingList (eatingToday.mealPlaneID, eating4.ID);
 			*/
 			//Ищем все приемы пищи по плану питания на текущий день
 			var eatings_list = database.getEatingList_by_MealPlaneID(eatingToday.mealPlaneID);
@@ -95,7 +95,8 @@ namespace healthy_eating
 			List<String> eatings_array = new List<String>();
 			//Заполняем ItemList
 			foreach(var item in eatings_list) {
-				var result_string = database.EatingTypeRus[item.eatingType];
+				var eating = database.getEating (item.eatingID);
+				var result_string = database.EatingTypeRus[eating.eatingType];
 				var foodPortionsList = database.getFoodPortionList_by_EatingID (item.eatingID);
 				foreach (var _foodpl in foodPortionsList) {
 					var _foodPortion = database.getFoodPortion (_foodpl.portionID);
@@ -153,30 +154,34 @@ namespace healthy_eating
 			Button food_type_button4 = alertdialog.FindViewById<Button>(Resource.Id.food_type_button4);
 
 			food_type_button1.Text = database.EatingTypeRus [(int)EatingType.breakfast];
-			food_type_button2.Text = database.EatingTypeRus [(int)EatingType.dinner];
-			food_type_button3.Text = database.EatingTypeRus [(int)EatingType.lunch];
+			food_type_button2.Text = database.EatingTypeRus [(int)EatingType.lunch];
+			food_type_button3.Text = database.EatingTypeRus [(int)EatingType.dinner];
 			food_type_button4.Text = database.EatingTypeRus [(int)EatingType.nosh];
 
 			food_type_button1.Click += (sender, e) =>
 			{
+				Global.choosed_eating_type = EatingType.breakfast;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
 
 			food_type_button2.Click += (sender, e) =>
 			{
+				Global.choosed_eating_type = EatingType.lunch;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
 				
 			food_type_button3.Click += (sender, e) =>
 			{
+				Global.choosed_eating_type = EatingType.dinner;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
 
 			food_type_button4.Click += (sender, e) =>
 			{
+				Global.choosed_eating_type = EatingType.nosh;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};

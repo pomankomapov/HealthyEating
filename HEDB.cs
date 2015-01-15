@@ -20,6 +20,7 @@ namespace healthy_eating
 
 		//Интерпретация типов приемов пищи на русский
 		public readonly List<String> EatingTypeRus;
+		public readonly List<DateTime> EatingTimes;
 
 		///////////////////////////////////////////////////////////////////////////
 		//            Блок инициализации   ////////////////////////////////////////
@@ -28,6 +29,7 @@ namespace healthy_eating
 		public HEDB ()
 		{
 			EatingTypeRus = new List<string> {"Завтрак", "Обед", "Ужин", "Перекус"};
+			EatingTimes = new List<DateTime> { new DateTime(2015, 1, 1, 7, 0, 0), new DateTime(2015, 1, 1, 12, 0, 0), new DateTime(2015, 1, 1, 18, 0, 0), new DateTime(2015, 1, 1, 15, 0, 0) };
 			initializeDatabase();
 		}
 
@@ -494,12 +496,13 @@ namespace healthy_eating
 		/// <param name="_time">Время приема пищи</param>
 		/// <param name="_eated">Съеден</param>
 
-		public Eating addEating(DateTime _time, bool _eaten = false)
+		public Eating addEating(DateTime _time, EatingType _eatingType, bool _eaten = false)
 		{
 			// Добавляем новый прием пищи
 			var _eating = new Eating {
 				time = _time,
-				eaten  = _eaten
+				eaten  = _eaten,
+				eatingType = (int)_eatingType
 			};
 
 			hedb.Insert (_eating);
@@ -660,7 +663,7 @@ namespace healthy_eating
 		/// <returns>EatingList</returns>
 		/// <param name="_mealPlaneID">ID плана питания</param>
 		/// <param name="_eatingID">ID приема пищи</param>
-		public EatingList addEatingList(int _mealPlaneID, EatingType _eatingType, int _eatingID)
+		public EatingList addEatingList(int _mealPlaneID, int _eatingID)
 		{
 			if (_mealPlaneID < 0 && _eatingID < 0) {
 				return null;
@@ -669,8 +672,7 @@ namespace healthy_eating
 			// Добавляем новый прием пищи
 			var _EatingList = new EatingList {
 				mealPlaneID = _mealPlaneID,
-				eatingID  = _eatingID,
-				eatingType = (int)_eatingType
+				eatingID  = _eatingID
 			};
 
 			hedb.Insert (_EatingList);
@@ -678,7 +680,7 @@ namespace healthy_eating
 		}
 
 		/*
-		public List<EatingList> addEatingList(int _mealPlane, EatingType _eatingType, List<Eating> _eatings)
+		public List<EatingList> addEatingList(int _mealPlane, List<Eating> _eatings)
 		{
 			if (_mealPlane < 0) {
 				return null;
@@ -689,8 +691,7 @@ namespace healthy_eating
 			foreach (var item in _eatings) {
 				var _EatingList = new EatingList {
 					mealPlaneID = _mealPlane,
-					eatingID  = item.ID,
-					eatingType = _eatingType
+					eatingID  = item.ID
 				};
 
 				hedb.Insert (_EatingList);
@@ -1199,7 +1200,8 @@ namespace healthy_eating
     {
 		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
-        public bool eaten { get; set; } 
+        public bool eaten { get; set; }
+		public int eatingType { get; set; }
 		public DateTime time { get; set; }
     }
 
@@ -1230,7 +1232,6 @@ namespace healthy_eating
 		public int ID { get; set; }
 		public int mealPlaneID { get; set; }
 		public int eatingID { get; set; }
-		public int eatingType { get; set; }
 	}
 
 	/// <summary>
