@@ -33,3 +33,8 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\R.cs.flag
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\uploadflags.txt
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\default_listitem.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\default_textview.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\food_types_dialog.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\white_button.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\addeating.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\clock.png
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\borders_green.xml

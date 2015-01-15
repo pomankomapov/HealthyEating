@@ -86,7 +86,9 @@
                 p1:minHeight="25px"
                 p1:layout_width="match_parent"
                 p1:layout_height="match_parent"
-                p1:id="@+id/EatingList" />
+                p1:id="@+id/EatingList"
+                p1:background="#ffffffff"
+                p1:fadingEdge="none" />
         </LinearLayout>
         <LinearLayout
             p1:orientation="horizontal"
@@ -134,25 +136,40 @@
             p1:orientation="horizontal"
             p1:minWidth="25px"
             p1:minHeight="25px"
-            p1:layout_width="wrap_content"
+            p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:id="@+id/linearLayout5"
-            p1:layout_below="@id/linearLayout4">
-            <Button
-                p1:text="Button"
-                p1:layout_width="wrap_content"
-                p1:layout_height="match_parent"
-                p1:id="@+id/button1" />
-            <Button
-                p1:text="Button"
-                p1:layout_width="wrap_content"
-                p1:layout_height="match_parent"
-                p1:id="@+id/button2" />
-            <Button
-                p1:text="Button"
-                p1:layout_width="wrap_content"
-                p1:layout_height="match_parent"
-                p1:id="@+id/button3" />
+            p1:layout_below="@id/linearLayout4"
+            p1:gravity="center_horizontal"
+            p1:layout_marginTop="20dp">
+            <ImageButton
+                p1:src="@drawable/add"
+                p1:layout_width="50dp"
+                p1:layout_height="50dp"
+                p1:id="@+id/button_neweating"
+                p1:layout_marginRight="10dp"
+                p1:layout_marginLeft="20dp"
+                p1:scaleType="centerInside"
+                p1:fadingEdge="none"
+                p1:background="#ffffff" />
+            <ImageButton
+                p1:layout_width="50dp"
+                p1:layout_height="50dp"
+                p1:id="@+id/imageButton2"
+                p1:layout_marginLeft="40dp"
+                p1:layout_marginRight="40dp"
+                p1:scaleType="centerInside"
+                p1:background="#ffffff"
+                p1:src="#ffffffff" />
+            <ImageButton
+                p1:src="@drawable/arrow"
+                p1:layout_width="50dp"
+                p1:layout_height="50dp"
+                p1:id="@+id/button_back"
+                p1:layout_marginLeft="10dp"
+                p1:layout_marginRight="20dp"
+                p1:background="#ffffff"
+                p1:scaleType="centerInside" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

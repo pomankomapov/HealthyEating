@@ -59,6 +59,7 @@
     <Compile Include="ListFood.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="FoodActivity.cs" />
+    <Compile Include="addEatingActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -92,6 +93,11 @@
     <AndroidResource Include="Resources\drawable\wei.png" />
     <AndroidResource Include="Resources\layout\default_ListItem.xml" />
     <AndroidResource Include="Resources\drawable\default_TextView.xml" />
+    <AndroidResource Include="Resources\layout\food_types_dialog.axml" />
+    <AndroidResource Include="Resources\drawable\white_button.xml" />
+    <AndroidResource Include="Resources\layout\addEating.axml" />
+    <AndroidResource Include="Resources\drawable\clock.png" />
+    <AndroidResource Include="Resources\drawable\borders_green.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

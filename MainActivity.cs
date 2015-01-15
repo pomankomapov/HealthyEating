@@ -55,6 +55,7 @@ namespace healthy_eating
             Global.deviceID = "noneID";
             Global.userID = int.MaxValue;
             Global.choosed_food_ID = int.MaxValue;
+			Global.choosed_eating_ID = int.MaxValue;
 
             HEDB database = new HEDB();
             database.delAll(); // Временно
@@ -69,21 +70,21 @@ namespace healthy_eating
             database.addFood("Яблоко", 45, 0, 70, 100, 3);
             database.addFood("Абрикос", 45, 0, 70, 100, 3);
             database.addFood("Молоко", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос", 45, 0, 70, 100, 3);
-			database.addFood("Молоко", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос", 45, 0, 70, 100, 3);
-			database.addFood("Молоко", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос", 45, 0, 70, 100, 3);
-			database.addFood("Молоко", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос", 45, 0, 70, 100, 3);
-			database.addFood("Молоко", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос", 45, 0, 70, 100, 3);
-			database.addFood("Молоко", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко1", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос1", 45, 0, 70, 100, 3);
+			database.addFood("Молоко1", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко2", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос2", 45, 0, 70, 100, 3);
+			database.addFood("Молоко2", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко3", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос3", 45, 0, 70, 100, 3);
+			database.addFood("Молоко3", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко4", 45, 0, 70, 100, 3);
+			database.addFood("Абрикос4", 45, 0, 70, 100, 3);
+			database.addFood("Молоко4", 45, 0, 70, 100, 3);
+			database.addFood("Яблоко5", 45, 0, 70, 100, 3);
+			database.addFood("Абрико5с", 45, 0, 70, 100, 3);
+			database.addFood("Молоко5", 45, 0, 70, 100, 3);
 		} 
 
 		/// <summary>

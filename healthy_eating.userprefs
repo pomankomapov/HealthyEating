@@ -1,13 +1,17 @@
-﻿<Properties>
+﻿<Properties StartupItem="healthy_eating.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.56.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MainActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Resources\drawable\borders_green.xml">
     <Files>
-      <File FileName="HEDBFunctions.cs" Line="1" Column="1" />
-      <File FileName="HEDB.cs" Line="3" Column="3" />
-      <File FileName="MainActivity.cs" Line="50" Column="50" />
-      <File FileName="FoodActivity.cs" Line="33" Column="33" />
-      <File FileName="Resources\drawable\default_TextView.xml" Line="57" Column="57" />
-      <File FileName="Resources\drawable\default_button.xml" Line="1" Column="1" />
+      <File FileName="HEDB.cs" Line="1" Column="1" />
+      <File FileName="MainActivity.cs" Line="1" Column="1" />
+      <File FileName="FoodActivity.cs" Line="1" Column="1" />
+      <File FileName="Resources\drawable\default_TextView.xml" Line="1" Column="1" />
+      <File FileName="Resources\drawable\default_button.xml" Line="15" Column="15" />
+      <File FileName="DataBaseActivity.cs" Line="1" Column="1" />
+      <File FileName="ListFood.cs" Line="2" Column="2" />
+      <File FileName="addEatingActivity.cs" Line="1" Column="1" />
+      <File FileName="Resources\drawable\white_button.xml" Line="41" Column="41" />
+      <File FileName="Resources\drawable\borders_green.xml" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

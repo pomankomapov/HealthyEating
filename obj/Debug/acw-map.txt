@@ -3,3 +3,4 @@ healthy_eating.DataBaseActivity;healthy_eating.DataBaseActivity
 healthy_eating.MainActivity;healthy_eating.MainActivity
 healthy_eating.ListFood;healthy_eating.ListFood
 healthy_eating.FoodActivity;healthy_eating.FoodActivity
+healthy_eating.addEatingActivity;healthy_eating.addEatingActivity

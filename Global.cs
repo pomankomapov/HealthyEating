@@ -13,6 +13,7 @@ namespace healthy_eating
         public static string deviceID { get; set; }  // ID устройства
 
         public static int choosed_food_ID { get; set; } // ID выбранной еды из базы
+		public static int choosed_eating_ID { get; set; } // ID выбранного приема пищи
 
         public static void print(Android.Content.Context context, string str)
         {

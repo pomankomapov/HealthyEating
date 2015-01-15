@@ -4,11 +4,22 @@ using System.Collections.Generic;
 
 namespace healthy_eating
 {
+	public enum EatingType : int
+	{
+		breakfast = 0,
+		lunch = 1,
+		dinner = 2,
+		nosh = 3
+	};
+
     // Healthy Eating DataBase
 	public class HEDB
 	{
 		// Коннектор к базе
 		private SQLiteConnection hedb;
+
+		//Интерпретация типов приемов пищи на русский
+		public readonly List<String> EatingTypeRus;
 
 		///////////////////////////////////////////////////////////////////////////
 		//            Блок инициализации   ////////////////////////////////////////
@@ -16,6 +27,7 @@ namespace healthy_eating
 
 		public HEDB ()
 		{
+			EatingTypeRus = new List<string> {"Завтрак", "Обед", "Ужин", "Перекус"};
 			initializeDatabase();
 		}
 
@@ -24,13 +36,18 @@ namespace healthy_eating
 			string folder = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			hedb = new SQLiteConnection (System.IO.Path.Combine (folder, "HelthyEating.db"));
 
-            hedb.CreateTable<Profile>();     // Создаем таблицу профилей
-            hedb.CreateTable<Profession>();  // Создаем таблицу профессий
-            hedb.CreateTable<Lifestyle>();   // Создаем таблицу образов жизни
-            hedb.CreateTable<Allergic>();    // Создаем таблицу аллергенных продуктов
-            hedb.CreateTable<Food>();        // Создаем таблицу продуктов
-            hedb.CreateTable<FoodPortion>(); // Создаем таблицу продукт-порция
-            hedb.CreateTable<Eating>();      // Создаем таблицу приём пищи
+            hedb.CreateTable<Profile>();   		 // Создаем таблицу профилей
+            hedb.CreateTable<Profession>();      // Создаем таблицу профессий
+            hedb.CreateTable<Lifestyle>();  	 // Создаем таблицу образов жизни
+            hedb.CreateTable<Allergic>();    	 // Создаем таблицу аллергенных продуктов
+            hedb.CreateTable<Food>();       	 // Создаем таблицу продуктов
+            hedb.CreateTable<FoodPortion>();	 // Создаем таблицу продукт-порция
+            hedb.CreateTable<Eating>();      	 // Создаем таблицу приём пищи
+			hedb.CreateTable<EatingDay>();	 	 // Создаем таблицу дней питания
+			hedb.CreateTable<FoodPortionList>(); // Создаем таблицу списка продукт-порций
+			hedb.CreateTable<EatingList>();		 // Создаем таблицу списка приемов пищи
+			hedb.CreateTable<EatingTemplate>();  // Создаем таблицу шаблонов приемов пищи
+			hedb.CreateTable<MealPlane>();		 // Создаем таблицу планов питания
 
 		}
 
@@ -46,10 +63,12 @@ namespace healthy_eating
             hedb.DeleteAll<Food>();
             hedb.DeleteAll<FoodPortion>();
             hedb.DeleteAll<Eating>();
+			hedb.DeleteAll<EatingDay>();
+			hedb.DeleteAll<FoodPortionList>();
+			hedb.DeleteAll<EatingList>();
+			hedb.DeleteAll<EatingTemplate>();
+			hedb.DeleteAll<MealPlane>();
         }
-
-
-
 
 
 		/*#######################################################################*/
@@ -344,6 +363,24 @@ namespace healthy_eating
             return result;
         }
 
+		public Food getFood(string _name)
+		{
+			_name = _name.ToLower().Trim();
+
+			Food result;
+			try
+			{
+				var query = hedb.Table<Food>().Where(x => x.name == _name);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
         public Food findFood(string name)
         {
             name = name.Trim();
@@ -614,7 +651,7 @@ namespace healthy_eating
 
 
 		////////////////////////////////////////////////////////////////////////////
-		//             "Списки приемов пищи"    ////////////////////////////////////
+		//   "Списки приемов пищи для плана питания"    ////////////////////////////
 		////////////////////////////////////////////////////////////////////////////
 
 		/// <summary>
@@ -623,7 +660,7 @@ namespace healthy_eating
 		/// <returns>EatingList</returns>
 		/// <param name="_mealPlaneID">ID плана питания</param>
 		/// <param name="_eatingID">ID приема пищи</param>
-		public EatingList addEatingList(int _mealPlaneID, int _eatingID)
+		public EatingList addEatingList(int _mealPlaneID, EatingType _eatingType, int _eatingID)
 		{
 			if (_mealPlaneID < 0 && _eatingID < 0) {
 				return null;
@@ -632,14 +669,16 @@ namespace healthy_eating
 			// Добавляем новый прием пищи
 			var _EatingList = new EatingList {
 				mealPlaneID = _mealPlaneID,
-				eatingID  = _eatingID
+				eatingID  = _eatingID,
+				eatingType = (int)_eatingType
 			};
 
 			hedb.Insert (_EatingList);
 			return _EatingList;
 		}
 
-		public List<EatingList> addEatingList(int _mealPlane, List<Eating> _eatings)
+		/*
+		public List<EatingList> addEatingList(int _mealPlane, EatingType _eatingType, List<Eating> _eatings)
 		{
 			if (_mealPlane < 0) {
 				return null;
@@ -650,7 +689,8 @@ namespace healthy_eating
 			foreach (var item in _eatings) {
 				var _EatingList = new EatingList {
 					mealPlaneID = _mealPlane,
-					eatingID  = item.ID
+					eatingID  = item.ID,
+					eatingType = _eatingType
 				};
 
 				hedb.Insert (_EatingList);
@@ -660,6 +700,7 @@ namespace healthy_eating
 
 			return eatinglist;
 		}
+		*/
 
 		public List<EatingList> getEatingList_by_MealPlaneID(int MealPlaneID)
 		{
@@ -920,18 +961,45 @@ namespace healthy_eating
 		////////////////////////////////////////////////////////////////////////////
 
 		/// <summary>
+		/// Добавление. (если параметр DateTime и он единстевенен, тогда автоматом добавится новый план питания)
+		/// </summary>
+		/// <returns>EatingDay</returns>
+		public EatingDay addEatingDay(DateTime _eatingDate)
+		{
+			var query = hedb.Table<EatingDay>().Where(x => x.eatingDate == _eatingDate);
+
+			if (query.Count() > 0) {
+				return null;
+			}
+
+			// Добавим план питания
+			var _mealPlane = addMealPlane ();
+			//Console.Out.WriteLine ("New MealPlane ID = " + _mealPlane.ID.ToString ());
+			// Добавляем новый
+			var _eating_day = new EatingDay{
+				mealPlaneID = _mealPlane.ID,
+				allCalories = 0,
+				eatingDate = _eatingDate
+			};
+
+			hedb.Insert (_eating_day);
+			return _eating_day;
+		}
+
+		/// <summary>
 		/// Добавление.
 		/// </summary>
 		/// <returns>EatingDay</returns>
 		public EatingDay addEatingDay(int _mealPlaneID, int _allCalories, DateTime _eatingDate)
 		{
 			var query = hedb.Table<EatingDay>().Where(x => x.mealPlaneID == _mealPlaneID);
+			var query_day = hedb.Table<EatingDay>().Where(x => x.eatingDate == _eatingDate);
 
-			if (query.Count() > 0) {
+			if (query.Count() > 0 || query_day.Count() > 0) {
 				return null;
 			}
 
-			// Добавляем новый шаблон
+			// Добавляем новый
 			var _eating = new EatingDay{
 				mealPlaneID = _mealPlaneID,
 				allCalories = _allCalories,
@@ -942,12 +1010,47 @@ namespace healthy_eating
 			return _eating;
 		}
 
+		public EatingDay setEatingDay_allCallories(int _ID, int _allCalories)
+		{
+			if (_allCalories < 0) {
+				return null;
+			}
+
+			var query = hedb.Table<EatingDay>().Where(x => x.ID == _ID);
+
+			if (query.Count() == 0) {
+				return null;
+			}
+
+			// Добавляем новый
+			var _eating = query.First ();
+			_eating.allCalories = _allCalories;
+			hedb.Update (_eating);
+			return _eating;
+		}
+
 		public EatingDay getEatingDay(int ID)
 		{
 			EatingDay result;
 			try
 			{
 				var query = hedb.Table<EatingDay>().Where(x => x.ID == ID);
+				result = query.First();
+			}
+			catch
+			{
+				result = null;
+			}
+
+			return result;
+		}
+
+		public EatingDay getEatingDay_by_Date(DateTime _date)
+		{
+			EatingDay result;
+			try
+			{
+				var query = hedb.Table<EatingDay>().Where(x => x.eatingDate == _date);
 				result = query.First();
 			}
 			catch
@@ -1127,6 +1230,7 @@ namespace healthy_eating
 		public int ID { get; set; }
 		public int mealPlaneID { get; set; }
 		public int eatingID { get; set; }
+		public int eatingType { get; set; }
 	}
 
 	/// <summary>
