@@ -29,8 +29,6 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\time.pn
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\training.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\water.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\wei.png
-C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\R.cs.flag
-C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\uploadflags.txt
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\default_listitem.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\default_textview.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\food_types_dialog.xml
@@ -38,3 +36,9 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\white_b
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\addeating.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\clock.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\borders_green.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\addproductportion.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\opacity_button.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\mini_listitem.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\R.cs.flag
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\uploadflags.txt
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\settimedialog.xml

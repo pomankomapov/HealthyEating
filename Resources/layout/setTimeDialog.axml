@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/relativeLayout1">
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/linearLayout1"
+        p1:layout_margin="20dp"
+        p1:gravity="center_horizontal">
+        <TextView
+            p1:text="Выберите время"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView1"
+            p1:textSize="8pt" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/linearLayout2"
+        p1:layout_below="@id/linearLayout1"
+        p1:gravity="center_horizontal">
+        <TimePicker
+            p1:layout_width="wrap_content"
+            p1:layout_height="match_parent"
+            p1:id="@+id/eating_timepicker"
+            p1:layout_marginTop="20dp"
+            p1:layout_marginBottom="20dp" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/linearLayout3"
+        p1:layout_below="@id/linearLayout2">
+        <ImageButton
+            p1:src="@drawable/ok"
+            p1:layout_width="match_parent"
+            p1:layout_height="80dp"
+            p1:id="@+id/applyTime"
+            p1:scaleType="centerInside"
+            p1:background="#00ffffff"
+            p1:layout_marginTop="20dp" />
+    </LinearLayout>
+</RelativeLayout>

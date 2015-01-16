@@ -14,6 +14,8 @@ namespace healthy_eating
 
         public static int choosed_food_ID { get; set; } // ID выбранной еды из базы
 		public static int choosed_eating_ID { get; set; } // ID выбранного приема пищи
+		public static EatingType choosed_eating_type { get; set; } // тип выбранного приема пищи
+		public static int choosed_mealPlain_ID { get; set; } // ID текущего плана питания
 
         public static void print(Android.Content.Context context, string str)
         {

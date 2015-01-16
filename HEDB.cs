@@ -448,6 +448,22 @@ namespace healthy_eating
 			return _foodPortion;
 		}
 
+		public FoodPortion addFoodPortion(FoodPortion new_foodPorion)
+		{
+			// Добавляем новую продукт-порцию
+			hedb.Insert (new_foodPorion);
+			return new_foodPorion;
+		}
+
+		public FoodPortion UpdateFoodPortion(FoodPortion foodportion_to_update) {
+			if (getFoodPortion (foodportion_to_update.ID) == null) {
+				return null;
+			}
+
+			hedb.Update (foodportion_to_update);
+			return foodportion_to_update;
+		}
+
 		public FoodPortion getFoodPortion(int ID)
 		{
 			FoodPortion result;
@@ -507,6 +523,22 @@ namespace healthy_eating
 
 			hedb.Insert (_eating);
 			return _eating;
+		}
+
+		public Eating addEating(Eating new_eating)
+		{
+			// Добавляем новый прием пищи
+			hedb.Insert (new_eating);
+			return new_eating;
+		}
+
+		public Eating UpdateEating(Eating eating_to_update) {
+			if (getEating (eating_to_update.ID) == null) {
+				return null;
+			}
+
+			hedb.Update (eating_to_update);
+			return eating_to_update;
 		}
 
 		public Eating getEating(int ID)
@@ -861,6 +893,20 @@ namespace healthy_eating
 			return PortionsList;
 		}
 
+		public FoodPortionList addFoodPortionList(FoodPortionList fplist)
+		{
+			hedb.Insert (fplist);
+			return fplist;
+		}
+
+		public FoodPortionList UpdateFoodPortionList(FoodPortionList foodportionlist_to_update) {
+			if (getFoodPortionList (foodportionlist_to_update.ID) == null) {
+				return null;
+			}
+
+			hedb.Update (foodportionlist_to_update);
+			return foodportionlist_to_update;
+		}
 
 		public List<FoodPortionList> getFoodPortionList_by_EatingID(int EatingID)
 		{
@@ -959,6 +1005,7 @@ namespace healthy_eating
 
 		////////////////////////////////////////////////////////////////////////////
 		//                     "Дни питания"    ////////////////////////////////////
+		//		Внимание! Работу с mealPlane нужно переделывать для многих планов!
 		////////////////////////////////////////////////////////////////////////////
 
 		/// <summary>

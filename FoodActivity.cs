@@ -20,6 +20,10 @@ namespace healthy_eating
 		protected ListView eatingList;
 		protected ImageButton btn_neweating;          // Кнопка добавления приема пищи
 		protected ImageButton btn_back;				  // Кнопка возврата к предыдущему активити
+		private MealPlane current_mealPlane;          // План питания на текущий день
+		private EatingDay eatingToday;				  // Текущий день питания
+		private List<Eating> current_eatings;		  // Список приемов пищи
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -43,72 +47,23 @@ namespace healthy_eating
 			// Инициализация компонентов + Собираем View //////////////////////////
 			///////////////////////////////////////////////////////////////////////
 
+			current_eatings = new List<Eating>();
+
 			// Текущий день
 			DateTime today = DateTime.Today;
 			System.Console.Out.WriteLine (today.ToString());
 
 			//Ищем текущий день питания
-			EatingDay eatingToday = database.getEatingDay_by_Date (today);
+			eatingToday = database.getEatingDay_by_Date (today);
 			//Если в базе нет текущего дня, то его следует добавить
 			if (eatingToday == null) {
 				eatingToday = database.addEatingDay (today);
 			}
 
-			///// Временное добавление приемов пищи
-			/*
-			List<FoodPortion> fp_list1 = new List<FoodPortion> ();
-			List<FoodPortion> fp_list2 = new List<FoodPortion> ();
-			List<FoodPortion> fp_list3 = new List<FoodPortion> ();
-			List<FoodPortion> fp_list4 = new List<FoodPortion> ();
-			var eating1 = database.addEating (new DateTime (2015, 1, 1, 12, 00, 00),  EatingType.breakfast, false);
-			var eating2 = database.addEating (new DateTime (2015, 1, 1, 13, 00, 00), EatingType.nosh, false);
-			var eating3 = database.addEating (new DateTime (2015, 1, 1, 15, 30, 00), EatingType.dinner, false);
-			var eating4 = database.addEating (new DateTime (2015, 1, 1, 18, 00, 00), EatingType.lunch, false);
+			//текущий план питания (используется при добавлении приемов пищи)
+			current_mealPlane = database.getMealPlane (eatingToday.mealPlaneID);
 
-			var food1 = database.getFood ("Яблоко");
-			var food2 = database.getFood ("Абрикос");
-			var food3 = database.getFood ("Молоко");
-			var food4 = database.getFood ("Молоко1");
-			var food5 = database.getFood ("Абрикос2");
-			var food6 = database.getFood ("Яблоко1");
-
-			fp_list1.Add (database.addFoodPortion (food1.ID, 100));
-			fp_list1.Add (database.addFoodPortion (food2.ID, 100));
-			fp_list2.Add (database.addFoodPortion (food3.ID, 100));
-			fp_list2.Add (database.addFoodPortion (food2.ID, 150));
-			fp_list3.Add (database.addFoodPortion (food2.ID, 100));
-			fp_list4.Add (database.addFoodPortion (food3.ID, 100));
-
-			database.addFoodPortionList (fp_list1, eating1);
-			database.addFoodPortionList (fp_list2, eating2);
-			database.addFoodPortionList (fp_list3, eating3);
-			database.addFoodPortionList (fp_list4, eating4);
-
-			database.addEatingList (eatingToday.mealPlaneID, eating1.ID);
-			database.addEatingList (eatingToday.mealPlaneID, eating2.ID);
-			database.addEatingList (eatingToday.mealPlaneID, eating3.ID);
-			database.addEatingList (eatingToday.mealPlaneID, eating4.ID);
-			*/
-			//Ищем все приемы пищи по плану питания на текущий день
-			var eatings_list = database.getEatingList_by_MealPlaneID(eatingToday.mealPlaneID);
-
-			List<String> eatings_array = new List<String>();
-			//Заполняем ItemList
-			foreach(var item in eatings_list) {
-				var eating = database.getEating (item.eatingID);
-				var result_string = database.EatingTypeRus[eating.eatingType];
-				var foodPortionsList = database.getFoodPortionList_by_EatingID (item.eatingID);
-				foreach (var _foodpl in foodPortionsList) {
-					var _foodPortion = database.getFoodPortion (_foodpl.portionID);
-					var _food = database.getFood (_foodPortion.foodID);
-					result_string += "\n  " + _food.name + " - " + _foodPortion.count.ToString() + "г.";
-				}
-				eatings_array.Add (result_string);
-			}
-
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Resource.Layout.default_ListItem, eatings_array);
-			eatingList.Adapter = adapter;
-
+			updateEatingListView ();
 
 			// Обработка событий /////////////////////////////////////////////////////////////
 
@@ -122,9 +77,49 @@ namespace healthy_eating
 				base.OnBackPressed();
 			};
 
-
-            // Задачи во время запуска активности /////////////////////////////////
+			eatingList.ItemClick += (sender, e) => {
+				editEating(e.Position);
+			};
         }
+
+
+
+		///////////////////////////////////////////////////////////////////////
+		// 		Обновление списка приемов пищи
+		///////////////////////////////////////////////////////////////////////
+
+		protected void updateEatingListView() {
+			//Ищем все приемы пищи по плану питания на текущий день
+			var eatings_list = database.getEatingList_by_MealPlaneID(eatingToday.mealPlaneID);
+
+			current_eatings.Clear ();
+
+			List<String> eatings_array = new List<String>();
+			//Заполняем ItemList
+			foreach(var item in eatings_list) {
+				var eating = database.getEating (item.eatingID);
+
+				//По пути обновляем лист текущих приемов пищи
+				current_eatings.Add (eating);
+
+				var result_string = database.EatingTypeRus[eating.eatingType];
+				var foodPortionsList = database.getFoodPortionList_by_EatingID (item.eatingID);
+				foreach (var _foodpl in foodPortionsList) {
+					var _foodPortion = database.getFoodPortion (_foodpl.portionID);
+					var _food = database.getFood (_foodPortion.foodID);
+					result_string += "\n  " + _food.name + " - " + _foodPortion.count.ToString() + "г.";
+				}
+				eatings_array.Add (result_string);
+			}
+
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Resource.Layout.default_ListItem, eatings_array);
+			eatingList.Adapter = adapter;
+		}
+
+
+		///////////////////////////////////////////////////////////////////////
+		// 		Диалог добавления приемов пищи
+		///////////////////////////////////////////////////////////////////////
 
 		protected void NewEating()
 		{
@@ -132,18 +127,6 @@ namespace healthy_eating
 
 			AlertDialog alertdialog = builder.Create();
 			alertdialog.SetTitle("Выберите тип");
-
-			alertdialog.SetButton("Close", (s, e) => {
-				//StartActivity(typeof(ProfileActivity));
-			});
-			/*
-			alertdialog.SetButton2(database.EatingTypeRus [(int)EatingType.dinner], (s, e) => {
-				//StartActivity(typeof(ProfileActivity));
-			});
-
-			alertdialog.SetButton3(database.EatingTypeRus [(int)EatingType.lunch], (s, e) => {
-				//StartActivity(typeof(ProfileActivity));
-			});*/
 
 			alertdialog.Show();
 			alertdialog.SetContentView (Resource.Layout.food_types_dialog);
@@ -153,6 +136,37 @@ namespace healthy_eating
 			Button food_type_button3 = alertdialog.FindViewById<Button>(Resource.Id.food_type_button3);
 			Button food_type_button4 = alertdialog.FindViewById<Button>(Resource.Id.food_type_button4);
 
+			//Все кроме nosh можно добавлять только один раз. Скрываем если нужно.
+			bool breakfast_hide = false;
+			bool lunch_hide = false;
+			bool dinner_hide = false;
+
+			foreach(var item in current_eatings) {
+				if (item.eatingType == (int)EatingType.breakfast) {
+					breakfast_hide = true;
+				} else if(item.eatingType == (int)EatingType.lunch) {
+					lunch_hide = true;
+				} else if(item.eatingType == (int)EatingType.dinner) {
+					dinner_hide = true;
+				}
+			}
+
+			if (breakfast_hide) {
+				food_type_button1.Visibility = ViewStates.Gone;
+			} else {
+				food_type_button1.Visibility = ViewStates.Visible;
+			}
+			if (lunch_hide) {
+				food_type_button2.Visibility = ViewStates.Gone;
+			} else {
+				food_type_button2.Visibility = ViewStates.Visible;
+			}
+			if (dinner_hide) {
+				food_type_button3.Visibility = ViewStates.Gone;
+			} else {
+				food_type_button3.Visibility = ViewStates.Visible;
+			}
+
 			food_type_button1.Text = database.EatingTypeRus [(int)EatingType.breakfast];
 			food_type_button2.Text = database.EatingTypeRus [(int)EatingType.lunch];
 			food_type_button3.Text = database.EatingTypeRus [(int)EatingType.dinner];
@@ -161,6 +175,7 @@ namespace healthy_eating
 			food_type_button1.Click += (sender, e) =>
 			{
 				Global.choosed_eating_type = EatingType.breakfast;
+				Global.choosed_eating_ID = int.MaxValue;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
@@ -168,6 +183,7 @@ namespace healthy_eating
 			food_type_button2.Click += (sender, e) =>
 			{
 				Global.choosed_eating_type = EatingType.lunch;
+				Global.choosed_eating_ID = int.MaxValue;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
@@ -175,6 +191,7 @@ namespace healthy_eating
 			food_type_button3.Click += (sender, e) =>
 			{
 				Global.choosed_eating_type = EatingType.dinner;
+				Global.choosed_eating_ID = int.MaxValue;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
@@ -182,14 +199,33 @@ namespace healthy_eating
 			food_type_button4.Click += (sender, e) =>
 			{
 				Global.choosed_eating_type = EatingType.nosh;
+				Global.choosed_eating_ID = int.MaxValue;
 				alertdialog.Dismiss();
 				addEatingShow();
 			};
 		}
 
-		protected void addEatingShow() {
-			StartActivity(typeof(addEatingActivity));
+		protected void editEating(int position) {
+			Global.choosed_eating_ID = current_eatings [position].ID;
+			addEatingShow ();
 		}
+
+		protected void addEatingShow() {
+			Global.choosed_mealPlain_ID = current_mealPlane.ID;
+			StartActivityForResult(typeof(addEatingActivity), 1);
+		}
+
+		//Апдейт при добавлении/удалении
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
+			if (resultCode == Result.Ok) {
+				updateEatingListView ();
+			}
+		}
+
     }
+
+	/////////////////////////////////////////////////////////////
+	//   Нужен обработчик событий клика по списку приемов пищи!!!!
+
 }
 

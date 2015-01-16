@@ -46,13 +46,20 @@
             p1:layout_width="wrap_content"
             p1:layout_height="wrap_content"
             p1:id="@+id/linearLayout2"
-            p1:layout_below="@id/linearLayout1">
+            p1:layout_below="@id/linearLayout1"
+            p1:scrollbars="none"
+            p1:overScrollMode="never"
+            p1:scrollbarSize="0dp">
             <ListView
                 p1:minWidth="25px"
                 p1:minHeight="25px"
                 p1:id="@+id/productPortionList"
                 p1:layout_width="match_parent"
-                p1:layout_height="wrap_content" />
+                p1:layout_height="220dp"
+                p1:fadingEdge="none"
+                p1:footerDividersEnabled="false"
+                p1:headerDividersEnabled="false"
+                p1:dividerHeight="0dp" />
         </LinearLayout>
         <ImageButton
             p1:src="@drawable/add"

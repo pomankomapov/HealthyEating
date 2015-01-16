@@ -1,22 +1,23 @@
 ﻿<Properties StartupItem="healthy_eating.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.56.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Resources\drawable\borders_green.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FoodActivity.cs">
     <Files>
-      <File FileName="HEDB.cs" Line="1" Column="1" />
-      <File FileName="MainActivity.cs" Line="1" Column="1" />
-      <File FileName="FoodActivity.cs" Line="1" Column="1" />
-      <File FileName="Resources\drawable\default_TextView.xml" Line="1" Column="1" />
-      <File FileName="Resources\drawable\default_button.xml" Line="15" Column="15" />
+      <File FileName="HEDB.cs" Line="73" Column="73" />
+      <File FileName="MainActivity.cs" Line="39" Column="39" />
+      <File FileName="FoodActivity.cs" Line="35" Column="35" />
+      <File FileName="addEatingActivity.cs" Line="71" Column="71" />
       <File FileName="DataBaseActivity.cs" Line="1" Column="1" />
-      <File FileName="ListFood.cs" Line="2" Column="2" />
-      <File FileName="addEatingActivity.cs" Line="1" Column="1" />
-      <File FileName="Resources\drawable\white_button.xml" Line="41" Column="41" />
-      <File FileName="Resources\drawable\borders_green.xml" Line="1" Column="1" />
+      <File FileName="ListFood.cs" Line="1" Column="1" />
+      <File FileName="Global.cs" Line="62" Column="62" />
+      <File FileName="Resources\drawable\default_button.xml" Line="1" Column="1" />
+      <File FileName="ProfileActivity.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="addEatingActivity.cs" line="84" offsetX="375" offsetY="1328" expression="current_eating" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.healthy__eating MonoForAntroid.PreferredDevice="Nexus 4" />
 </Properties>

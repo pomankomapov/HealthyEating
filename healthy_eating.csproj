@@ -98,6 +98,10 @@
     <AndroidResource Include="Resources\layout\addEating.axml" />
     <AndroidResource Include="Resources\drawable\clock.png" />
     <AndroidResource Include="Resources\drawable\borders_green.xml" />
+    <AndroidResource Include="Resources\layout\addProductPortion.axml" />
+    <AndroidResource Include="Resources\drawable\opacity_button.xml" />
+    <AndroidResource Include="Resources\layout\mini_ListItem.xml" />
+    <AndroidResource Include="Resources\layout\setTimeDialog.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
