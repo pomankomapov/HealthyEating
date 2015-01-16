@@ -7,6 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Telephony;
+using System.IO;
+using Android.Content.PM;
+using Java.IO;
 using Java.Util;
 
 namespace healthy_eating
@@ -19,6 +22,7 @@ namespace healthy_eating
         protected ImageButton btn_profile;       // Кнопка профиля
         protected ImageButton btn_options;       // Кнопка настроек
         protected ImageButton btn_food;          // Кнопка пищи
+		protected ImageButton btn_stats;         // Кнопка статистики
       
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -33,6 +37,7 @@ namespace healthy_eating
             btn_profile = FindViewById<ImageButton>(Resource.Id.button_profile);
             btn_options = FindViewById<ImageButton>(Resource.Id.button_options);
             btn_food = FindViewById<ImageButton>(Resource.Id.button_food);
+			btn_stats   = FindViewById<ImageButton>(Resource.Id.button_stats);
 
 			// Назначаем действия /////////////////////////////////////////////////
 
@@ -50,6 +55,10 @@ namespace healthy_eating
                 StartActivity(typeof(FoodActivity));
             };
 
+			btn_stats.Click += (sender, e) => {
+				StartActivity(typeof(StatisticsActivity));
+			};
+
 			// Задачи во время запуска активности /////////////////////////////////
 
             Global.deviceID = "noneID";
@@ -66,26 +75,87 @@ namespace healthy_eating
                 StartActivity(typeof(ProfileActivity));
 			fill_data();
 
-            database.delAllFood(); // Проверка работоспособности
-            database.addFood("Яблоко", 45, 0, 70, 100, 3);
-            database.addFood("Абрикос", 45, 0, 70, 100, 3);
-            database.addFood("Молоко", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко1", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос1", 45, 0, 70, 100, 3);
-			database.addFood("Молоко1", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко2", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос2", 45, 0, 70, 100, 3);
-			database.addFood("Молоко2", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко3", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос3", 45, 0, 70, 100, 3);
-			database.addFood("Молоко3", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко4", 45, 0, 70, 100, 3);
-			database.addFood("Абрикос4", 45, 0, 70, 100, 3);
-			database.addFood("Молоко4", 45, 0, 70, 100, 3);
-			database.addFood("Яблоко5", 45, 0, 70, 100, 3);
-			database.addFood("Абрико5с", 45, 0, 70, 100, 3);
-			database.addFood("Молоко5", 45, 0, 70, 100, 3);
+			database.delAll(); // Всё удаляем
+			init_db();
 		} 
+
+
+
+		protected void init_db()
+		{
+			// Получение пути к файлу
+			/*
+            PackageManager m = PackageManager;
+            String s = PackageName;
+            PackageInfo p = m.GetPackageInfo(s, 0);
+            s = p.ApplicationInfo.DataDir;
+            var path = System.IO.Path.Combine(s, "Assets/product.xml");
+            */
+
+			// Чтение файла из asserts и парсинг
+			var file = Assets.Open("product.xml");
+			//FileStream file = System.IO.File.Open(path, FileMode.Open);
+			var reader = new StreamReader(file);
+			var str = reader.ReadToEnd();
+			parse_xml(str);
+		}
+
+		protected void parse_xml(string s)
+		{
+			string name, proteins, fats, carbs, calories;
+			float p, f, c, cals;
+			string[] items = s.Split(new string[] { "<item>" }, StringSplitOptions.None);
+
+			foreach (string item in items)
+			{
+				name     = get_attr(item, "name").Replace ('.', ',');
+				proteins = get_attr(item, "proteins").Replace ('.', ',');
+				fats     = get_attr(item, "fats").Replace ('.', ',');
+				carbs    = get_attr(item, "carbs").Replace ('.', ',');
+				calories = get_attr(item, "calories").Replace ('.', ',');
+
+				if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(proteins)
+					||  string.IsNullOrEmpty(fats) || string.IsNullOrEmpty(carbs)
+					||  string.IsNullOrEmpty(calories))
+					continue;
+
+				if (!float.TryParse(proteins, out p))
+					continue;
+
+				if (!float.TryParse(fats, out f))
+					continue;
+
+				if (!float.TryParse(carbs, out c))
+					continue;
+
+				if (!float.TryParse(calories, out cals))
+					continue;
+
+				// Debug
+				System.Console.Out.WriteLine("{0} | {1}/{2}/{3} - {4}", name, proteins, fats, carbs, calories);
+
+				database.addFood(name, p, f, c, cals, Global.userID);
+			}
+		}
+
+		protected string get_attr(string str, string attr)
+		{
+			string s = string.Copy(str);
+			string tag_open  = "<" + attr + ">";
+			string tag_close = "</" + attr + ">";
+
+			if (s.Contains(tag_open) && s.Contains(tag_close))
+			{
+				int start = s.IndexOf(tag_open, 0) + tag_open.Length;
+				int end = s.IndexOf(tag_close, start);
+
+				return s.Substring(start, end - start);
+			}
+
+			return "";
+		}
+
+
 
 		/// <summary>
 		/// Заполняет данные о пользователе для вывода в активности

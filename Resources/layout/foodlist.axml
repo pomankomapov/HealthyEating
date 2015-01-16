@@ -40,7 +40,8 @@
             p1:id="@+id/linearLayout2"
             p1:layout_below="@id/linearLayout1"
             p1:gravity="center_horizontal"
-            p1:layout_marginTop="10dp">
+            p1:layout_marginTop="10dp"
+            p1:visibility="gone">
             <TextView
                 p1:text="Рекомендуем:"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -78,17 +79,23 @@
             p1:minWidth="25px"
             p1:minHeight="25px"
             p1:layout_width="match_parent"
-            p1:layout_height="300dp"
+            p1:layout_height="wrap_content"
             p1:id="@+id/linearLayout3"
             p1:layout_below="@id/linearLayout2">
             <ListView
                 p1:minWidth="25px"
                 p1:minHeight="25px"
                 p1:layout_width="match_parent"
-                p1:layout_height="match_parent"
+                p1:layout_height="360dp"
                 p1:id="@+id/EatingList"
                 p1:background="#ffffffff"
-                p1:fadingEdge="none" />
+                p1:fadingEdge="none"
+                p1:layout_marginTop="20dp"
+                p1:layout_marginBottom="20dp"
+                p1:divider="#ffffffff"
+                p1:dividerHeight="0dp"
+                p1:headerDividersEnabled="false"
+                p1:footerDividersEnabled="false" />
         </LinearLayout>
         <LinearLayout
             p1:orientation="horizontal"
@@ -99,7 +106,8 @@
             p1:id="@+id/linearLayout4"
             p1:layout_below="@id/linearLayout3"
             p1:gravity="center_horizontal"
-            p1:layout_marginTop="10dp">
+            p1:layout_marginTop="10dp"
+            p1:visibility="gone">
             <TextView
                 p1:text="Осталось:"
                 p1:textAppearance="?android:attr/textAppearanceMedium"

@@ -35,11 +35,12 @@ public final class R {
         public static final int time=0x7f020011;
         public static final int training=0x7f020012;
         public static final int water=0x7f020013;
-        public static final int wei=0x7f020014;
-        public static final int white_button=0x7f020015;
+        public static final int white_button=0x7f020014;
     }
     public static final class id {
         public static final int EatingList=0x7f06002d;
+        public static final int LinChart1=0x7f060052;
+        public static final int PieChart1=0x7f060050;
         public static final int addProductPortion=0x7f060007;
         public static final int applyEating_button=0x7f06000c;
         public static final int applyPortion=0x7f060012;
@@ -57,6 +58,7 @@ public final class R {
         public static final int button_neweating=0x7f060031;
         public static final int button_options=0x7f06003a;
         public static final int button_profile=0x7f06003b;
+        public static final int button_stats=0x7f060037;
         public static final int eatingTypeLabel=0x7f060002;
         public static final int eating_timepicker=0x7f06004e;
         public static final int editText_db_calories=0x7f060022;
@@ -72,7 +74,6 @@ public final class R {
         public static final int food_type_button2=0x7f060028;
         public static final int food_type_button3=0x7f060029;
         public static final int food_type_button4=0x7f06002a;
-        public static final int imageButton1=0x7f060037;
         public static final int imageButton2=0x7f060032;
         public static final int imageButton4=0x7f060039;
         public static final int imageView1=0x7f060034;
@@ -83,7 +84,6 @@ public final class R {
         public static final int linearLayout5=0x7f060011;
         public static final int linearLayout6=0x7f06004b;
         public static final int linearLayout7=0x7f060042;
-        public static final int linear_buttons=0x7f060050;
         public static final int portionText=0x7f06000f;
         public static final int portion_seekbar=0x7f060010;
         public static final int productList=0x7f06000e;
@@ -100,13 +100,9 @@ public final class R {
         public static final int seekbar_target_weight=0x7f06004a;
         public static final int seekbar_weight=0x7f060048;
         public static final int setTime_button=0x7f06000a;
+        public static final int spinner1=0x7f060054;
         public static final int spinner_allergic=0x7f060041;
         public static final int spinner_lifestyle=0x7f060040;
-        public static final int stat_calories=0x7f060053;
-        public static final int stat_pfc=0x7f060055;
-        public static final int stat_training=0x7f06005a;
-        public static final int stat_water=0x7f060057;
-        public static final int stat_weight=0x7f060051;
         public static final int tableLayout1=0x7f060013;
         public static final int tableRow1=0x7f060014;
         public static final int tableRow2=0x7f06001a;
@@ -125,12 +121,8 @@ public final class R {
         public static final int textView5=0x7f06002e;
         public static final int textView6=0x7f06002f;
         public static final int textView7=0x7f060030;
-        public static final int textView9=0x7f060058;
-        public static final int text_stat_calories=0x7f060054;
-        public static final int text_stat_pfc=0x7f060056;
-        public static final int text_stat_training=0x7f06005b;
-        public static final int text_stat_water=0x7f060059;
-        public static final int text_stat_weight=0x7f060052;
+        public static final int text_cals_and_water=0x7f060051;
+        public static final int text_pfc_stats=0x7f060053;
     }
     public static final class layout {
         public static final int addeating=0x7f030000;
@@ -143,7 +135,7 @@ public final class R {
         public static final int mini_listitem=0x7f030007;
         public static final int profile=0x7f030008;
         public static final int settimedialog=0x7f030009;
-        public static final int temp=0x7f03000a;
+        public static final int statistics=0x7f03000a;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

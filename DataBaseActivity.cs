@@ -33,6 +33,9 @@ namespace healthy_eating
 		{
 			base.OnCreate (bundle);
 
+            // Убираем автофокус
+            this.Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
+
             // Ставим нужный layout ///////////////////////////////////////////////
 
             SetContentView (Resource.Layout.db);
@@ -79,6 +82,8 @@ namespace healthy_eating
 
             // То достаём из базы и пишем в контролы
             Food food = database.getFood(Global.choosed_food_ID);
+            if (food == null)
+                return;
 
             edt_food.Text = food.name;
             edt_proteins.Text = string.Format("{0}", food.proteins);
@@ -102,15 +107,15 @@ namespace healthy_eating
                 return;
             }
 
-            int p, f, c; // Proteins, fats, carbs
-            int calories;
+            float p, f, c; // Proteins, fats, carbs
+            float calories;
             p = f = c = calories = -1;
 
             bool success = true;
-            success &= int.TryParse(edt_proteins.Text, out p);
-            success &= int.TryParse(edt_fats.Text,     out f);
-            success &= int.TryParse(edt_carbs.Text,    out c);
-            success &= int.TryParse(edt_calories.Text, out calories);
+            success &= float.TryParse(edt_proteins.Text, out p);
+            success &= float.TryParse(edt_fats.Text,     out f);
+            success &= float.TryParse(edt_carbs.Text,    out c);
+            success &= float.TryParse(edt_calories.Text, out calories);
 
             // Проверки на разумные значения
             if (!success || p < 0 || f < 0 || c < 0 || calories < 0)

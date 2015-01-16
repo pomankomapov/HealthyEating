@@ -60,6 +60,8 @@
     <Compile Include="Global.cs" />
     <Compile Include="FoodActivity.cs" />
     <Compile Include="addEatingActivity.cs" />
+    <Compile Include="StatisticsActivity.cs" />
+    <Compile Include="Graphs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -72,7 +74,6 @@
     <AndroidResource Include="Resources\layout\profile.axml" />
     <AndroidResource Include="Resources\layout\main.axml" />
     <AndroidResource Include="Resources\layout\db.axml" />
-    <AndroidResource Include="Resources\layout\temp.axml" />
     <AndroidResource Include="Resources\layout\foodlist.axml" />
     <AndroidResource Include="Resources\drawable\add.png" />
     <AndroidResource Include="Resources\drawable\arrow.png" />
@@ -90,7 +91,6 @@
     <AndroidResource Include="Resources\drawable\time.png" />
     <AndroidResource Include="Resources\drawable\training.png" />
     <AndroidResource Include="Resources\drawable\water.png" />
-    <AndroidResource Include="Resources\drawable\wei.png" />
     <AndroidResource Include="Resources\layout\default_ListItem.xml" />
     <AndroidResource Include="Resources\drawable\default_TextView.xml" />
     <AndroidResource Include="Resources\layout\food_types_dialog.axml" />
@@ -102,9 +102,15 @@
     <AndroidResource Include="Resources\drawable\opacity_button.xml" />
     <AndroidResource Include="Resources\layout\mini_ListItem.xml" />
     <AndroidResource Include="Resources\layout\setTimeDialog.axml" />
+    <AndroidResource Include="Resources\layout\statistics.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\product.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
   </ItemGroup>
 </Project>

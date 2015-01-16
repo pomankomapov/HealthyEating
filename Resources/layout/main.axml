@@ -79,7 +79,7 @@
                         <ImageButton
                             p1:src="@drawable/stats"
                             p1:layout_height="130dp"
-                            p1:id="@+id/imageButton1"
+                            p1:id="@+id/button_stats"
                             p1:scaleType="centerInside"
                             p1:layout_width="120dp"
                             p1:background="#ffffffff"

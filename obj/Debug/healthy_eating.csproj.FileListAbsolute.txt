@@ -10,7 +10,6 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\values\strings.x
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\profile.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\main.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\db.xml
-C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\temp.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\foodlist.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\add.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\arrow.png
@@ -28,7 +27,6 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\stats.p
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\time.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\training.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\water.png
-C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\wei.png
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\default_listitem.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\default_textview.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\food_types_dialog.xml
@@ -39,6 +37,7 @@ C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\borders
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\addproductportion.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\drawable\opacity_button.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\mini_listitem.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\settimedialog.xml
+C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\statistics.xml
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\R.cs.flag
 C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\uploadflags.txt
-C:\Users\KillerrrK\Documents\GitHub\HealthyEating\obj\Debug\res\layout\settimedialog.xml

@@ -67,6 +67,8 @@ namespace healthy_eating
 
 			// Обработка событий /////////////////////////////////////////////////////////////
 
+			RegisterForContextMenu (eatingList);
+
 			btn_neweating.Click += (sender, e) =>
 			{
 				NewEating();
@@ -81,6 +83,65 @@ namespace healthy_eating
 				editEating(e.Position);
 			};
         }
+
+
+		////////////////////////////////////////////////////////////////
+		///		Контекстное меню для удаления
+		////////////////////////////////////////////////////////////////
+
+		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) {
+			menu.Add(Menu.None, 1, Menu.None, "Удалить");
+		}
+
+		public override bool OnContextItemSelected(IMenuItem item) {
+			if (item.ItemId == 1) {
+				AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+				var eating_type = database.EatingTypeRus [(int)current_eatings [info.Position].eatingType];
+				DialogDelOkCancel("Вы действительно хотите удалить '" + eating_type +"'?", info.Position);
+			}
+			return true;
+		}
+
+
+		////////////////////////////////////////////////////////////////
+		///		Функции удаления
+		////////////////////////////////////////////////////////////////
+		private void delEating(int position) {
+			var eating_type = database.EatingTypeRus [(int)current_eatings [position].eatingType];
+			//Убиваем запись в плане питания
+			database.delEatingListItem (current_eatings [position].ID, current_mealPlane.ID);
+
+			//Убиваем прием пищи
+			database.delEating (current_eatings [position].ID);
+
+			updateEatingListView ();
+			Global.print (this, eating_type + " удален");
+		}
+
+
+
+		//////////////////////////////////////////////////////////////////////
+		/// 	Диалог подтверждения удаления
+		//////////////////////////////////////////////////////////////////////
+
+		protected void DialogDelOkCancel(String del_note, int del_position)
+		{
+			Android.App.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			AlertDialog alertdialog = builder.Create();
+			alertdialog.SetTitle("Удаление приема пищи");
+			alertdialog.SetMessage(del_note);
+
+			alertdialog.SetButton("Ок", (s, e) => {
+				delEating(del_position);
+				alertdialog.Dismiss();
+			});
+
+			alertdialog.SetButton2("Отмена", (s, e) => {
+				alertdialog.Dismiss();
+			});
+
+			alertdialog.Show();
+		}
 
 
 

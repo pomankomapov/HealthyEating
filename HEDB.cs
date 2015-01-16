@@ -332,7 +332,7 @@ namespace healthy_eating
         /// <param name="_carbs">Угдеводы</param>
         /// <param name="_calories">Калории</param>
         /// <param name="_ProfileID">Номер профиля добавившего продукт</param>
-        public Food addFood(string _name, int _proteins, int _fats, int _carbs, int _calories, int _ProfileID)
+        public Food addFood(string _name, float _proteins, float _fats, float _carbs, float _calories, int _ProfileID)
         {
             _name = _name.ToLower().Trim();
 
@@ -785,6 +785,17 @@ namespace healthy_eating
 			return hedb.Delete<EatingList> (ID);
 		}
 
+		public int delEatingListItem(int EatingID, int MealPlaneID) {
+			var query = hedb.Table<EatingList>().Where(x => (x.mealPlaneID == MealPlaneID) && (x.eatingID == EatingID));
+
+			if (query.Count() == 0) {
+				return 0;
+			}
+
+			EatingList delEating = query.First ();
+			return hedb.Delete<EatingList> (delEating.ID);
+		}
+
 		public int delEatingList_by_MealPlaneID(int MealPlaneID) {
 			var query = hedb.Table<EatingList>().Where(x => x.mealPlaneID == MealPlaneID);
 			int result = 0;
@@ -927,6 +938,7 @@ namespace healthy_eating
 			return result;
 		}
 
+		/*
 		public List<FoodPortionList> getFoodPortionList_by_EatingTemplateID(int EatingTemplateID)
 		{
 			List<FoodPortionList> result = new List<FoodPortionList>();
@@ -945,6 +957,7 @@ namespace healthy_eating
 
 			return result;
 		}
+		*/
 
 		public FoodPortionList getFoodPortionList(int ID)
 		{
@@ -987,6 +1000,7 @@ namespace healthy_eating
 			return result;
 		}
 
+		/*
 		public int delFoodPortionList_by_EatingTemplateID(int EatingTemplateID) {
 			var query = hedb.Table<FoodPortionList>().Where(x => x.eatingTemplateID == EatingTemplateID);
 			int result = 0;
@@ -996,6 +1010,7 @@ namespace healthy_eating
 			}
 			return result;
 		}
+		*/
 
 		public int delAllFoodPortionList() {
 			return hedb.DeleteAll<FoodPortionList> ();
@@ -1125,6 +1140,7 @@ namespace healthy_eating
 			return result;
 		}
 
+		/*
 		public List<EatingDay> getAllEatingDay()
 		{
 			var table = hedb.Table<EatingDay>();
@@ -1143,6 +1159,7 @@ namespace healthy_eating
 		public int delAllEatingDay() {
 			return hedb.DeleteAll<EatingDay> ();
 		}
+		*/
 	}
 
 
@@ -1210,10 +1227,10 @@ namespace healthy_eating
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string name { get; set; }
-        public int proteins { get; set; }
-        public int fats { get; set; }
-        public int carbs { get; set; } // Сокращение от carbohydrates (используется в языке)
-        public int calories { get; set; }
+        public float proteins { get; set; }
+        public float fats { get; set; }
+        public float carbs { get; set; } // Сокращение от carbohydrates (используется в языке)
+        public float calories { get; set; }
         public int profileID { get; set; }
     }
 

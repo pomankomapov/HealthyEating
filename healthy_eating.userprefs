@@ -1,17 +1,29 @@
 ﻿<Properties StartupItem="healthy_eating.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.56.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FoodActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MainActivity.cs">
     <Files>
-      <File FileName="HEDB.cs" Line="73" Column="73" />
-      <File FileName="MainActivity.cs" Line="39" Column="39" />
-      <File FileName="FoodActivity.cs" Line="35" Column="35" />
-      <File FileName="addEatingActivity.cs" Line="71" Column="71" />
+      <File FileName="HEDB.cs" Line="3" Column="3" />
+      <File FileName="MainActivity.cs" Line="1" Column="1" />
+      <File FileName="FoodActivity.cs" Line="1" Column="1" />
+      <File FileName="addEatingActivity.cs" Line="1" Column="1" />
       <File FileName="DataBaseActivity.cs" Line="1" Column="1" />
-      <File FileName="ListFood.cs" Line="1" Column="1" />
-      <File FileName="Global.cs" Line="62" Column="62" />
-      <File FileName="Resources\drawable\default_button.xml" Line="1" Column="1" />
-      <File FileName="ProfileActivity.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="healthy_eating" expanded="True">
+            <Node name="Assets" expanded="True" />
+            <Node name="Properties" expanded="True" />
+            <Node name="Resources" expanded="True">
+              <Node name="drawable" expanded="True" />
+              <Node name="layout" expanded="True">
+                <Node name="foodlist.axml" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -17,6 +17,13 @@ namespace healthy_eating
 		public static EatingType choosed_eating_type { get; set; } // тип выбранного приема пищи
 		public static int choosed_mealPlain_ID { get; set; } // ID текущего плана питания
 
+		public static float percent1;  // Калорий в день потреблено
+		public static float percent2;  // Воды поглощено
+
+		public static float linechart1; // Белки
+		public static float linechart2; // Жиры
+		public static float linechart3; // Углеводы
+
         public static void print(Android.Content.Context context, string str)
         {
             Android.Widget.Toast.MakeText(context, str, ToastLength.Short).Show();

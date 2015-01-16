@@ -28,6 +28,10 @@ namespace healthy_eating
 		private List<Food> allFoods;							  // Список всех имеющихся в базе продуктов
 		protected TextView eatingTypeLabel;						  // Выбранный тип приема пищи
 
+		//Для удаление из ДБ
+		private List<int> del_db_foodPortionListID;
+		private List<int> del_db_foodPortionID;
+
 		//Для диалогов
 		protected TextView pp_productSelected;
 		protected TextView pp_portionText;
@@ -69,6 +73,9 @@ namespace healthy_eating
 			/// 	Инициализация контента
 			/////////////////////////////////////////////////////////////////
 
+			del_db_foodPortionListID = new List<int> ();
+			del_db_foodPortionID = new List<int> ();
+
 			// Инициализация листа продукт порций //////////////////////////////////////
 			// если не выбран прием пищи, то создаем новый
 			bool_new_eating = false;
@@ -107,6 +114,8 @@ namespace healthy_eating
 				EditPortion(e.Position);
 			};
 
+			RegisterForContextMenu (ppListView);
+
 			btn_addProducPortion.Click += (sender, e) =>
 			{
 				EditPortion(-1);
@@ -121,8 +130,53 @@ namespace healthy_eating
 			{
 				ApplyChanges();
 			};
+
 		}
 
+
+		////////////////////////////////////////////////////////////////
+		///		Контекстное меню для удаления
+		////////////////////////////////////////////////////////////////
+
+		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) {
+			menu.Add(Menu.None, 1, Menu.None, "Удалить");
+		}
+
+		public override bool OnContextItemSelected(IMenuItem item) {
+			if (item.ItemId == 1) {
+				AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+				delProductPortion(info.Position);
+			}
+			return true;
+		}
+
+
+		////////////////////////////////////////////////////////////////
+		///		Функции удаления
+		////////////////////////////////////////////////////////////////
+		private void delProductPortion(int position) {
+			if (current_foodPortionsList [position].ID != 0) {
+				del_db_foodPortionListID.Add (current_foodPortionsList [position].ID);
+			}
+
+			if (current_foodPortionsList_Items [position].ID != 0) {
+				del_db_foodPortionID.Add (current_foodPortionsList_Items [position].ID);
+			}
+
+			current_foodPortionsList.RemoveAt (position);
+			current_foodPortionsList_Items.RemoveAt (position);
+			updateProductPortionList ();
+		}
+
+		private void delFromDB() {
+			foreach (var item in del_db_foodPortionListID) {
+				database.delFoodPortionList (item);
+			}
+
+			foreach (var item in del_db_foodPortionID) {
+				database.delFoodPortion (item);
+			}
+		}
 
 
 		/////////////////////////////////////////////////////////////////
@@ -143,10 +197,6 @@ namespace healthy_eating
 
 			AlertDialog alertdialog = builder.Create();
 			alertdialog.SetTitle("Выберите продукт и его размер порции");
-
-			alertdialog.SetButton("Close", (s, e) => {
-				//StartActivity(typeof(ProfileActivity));
-			});
 
 			alertdialog.Show();
 			alertdialog.SetContentView (Resource.Layout.addProductPortion);
@@ -333,6 +383,8 @@ namespace healthy_eating
 					Global.print(base.BaseContext,  database.EatingTypeRus[dbEating.eatingType] + " обновлен");
 				}
 
+				delFromDB ();
+
 				SetResult (Result.Ok);
 				Global.choosed_eating_ID = int.MaxValue;
 				Finish ();
@@ -342,10 +394,5 @@ namespace healthy_eating
 			}
 		}
 	}
-
-	/*
-	Допилить:
-		Удаление продукт порций и списков
-	*/
 }
 

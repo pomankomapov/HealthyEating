@@ -59,7 +59,8 @@
                 p1:fadingEdge="none"
                 p1:footerDividersEnabled="false"
                 p1:headerDividersEnabled="false"
-                p1:dividerHeight="0dp" />
+                p1:dividerHeight="0dp"
+                p1:divider="#ffffffff" />
         </LinearLayout>
         <ImageButton
             p1:src="@drawable/add"

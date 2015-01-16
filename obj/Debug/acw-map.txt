@@ -4,3 +4,7 @@ healthy_eating.MainActivity;healthy_eating.MainActivity
 healthy_eating.ListFood;healthy_eating.ListFood
 healthy_eating.FoodActivity;healthy_eating.FoodActivity
 healthy_eating.addEatingActivity;healthy_eating.addEatingActivity
+healthy_eating.StatisticsActivity;healthy_eating.StatisticsActivity
+healthy_eating.PieChart;healthy_eating.PieChart
+healthy_eating.Graph;healthy_eating.Graph
+healthy_eating.LinChart;healthy_eating.LinChart
